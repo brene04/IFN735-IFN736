@@ -1,255 +1,384 @@
 # Competency-Based Human Resource Management System (CB-HRMS)
 
-**Project:** Competency-Based Human Resource Management System (CB-HRMS)  
-**Phase:** Phase 1 – Fully Functional Prototype  
-**Database:** MySQL  
-**Status:** Revised – Aligned with Client-Confirmed Phase 1 System Architecture  
+**Project:** Competency-Based Human Resource Management System
+(CB-HRMS)\
+**Phase:** Phase 1 -- Fully Functional Prototype\
+**Database:** MySQL\
+**Status:** Revised -- Synchronized with the revised Phase 1 ERD\
 **Owner:** Data & System Architecture Lead
 
----
+------------------------------------------------------------------------
 
 # 1. Purpose
 
-This data dictionary defines the Phase 1 database structure for the CB-HRMS prototype. It documents the database entities, fields, data types, keys, relationships, and purpose of each field.
+This data dictionary defines the Phase 1 database structure for the
+CB-HRMS prototype. It documents the database entities, fields, data
+types, keys, relationships, and purpose of each field.
 
-The Phase 1 database supports the client-confirmed system scope, including:
+The Phase 1 database supports the client-confirmed scope represented in
+the revised ERD:
 
-- User and role management
-- Office management
-- Employee management
-- Position management
-- Competency management
-- Position-to-competency mapping
-- Employee competency profiling
-- Competency assessment
-- Competency gap analysis
-- Reporting and decision support
-- Historical storage of assessment and gap-analysis results
+-   User and role management
+-   Office management
+-   Employee management
+-   Position management
+-   Competency management
+-   Position-to-competency mapping
+-   Employee competency profiling
+-   Competency gap analysis
+-   Reporting
+-   Historical records
 
-The database is designed to support the competency profiling and gap-analysis workflow:
+Training & Development, Individual Development Plan (IDP), and Talent &
+Succession Planning are excluded from Phase 1.
 
-**Position → Required Competencies → Employee Competencies → Assessment → Gap Analysis → Historical Results / Reporting**
-
-Training and Development, Individual Development Plan (IDP), and Talent & Succession Planning are **not included in the Phase 1 database scope**. These may be considered for future phases subject to client confirmation.
-
----
+------------------------------------------------------------------------
 
 # 2. Key Definitions
 
-| Term | Meaning |
-|---|---|
-| **PK** | Primary Key – uniquely identifies a record |
-| **FK** | Foreign Key – references a record in another table |
-| **INT** | Integer / whole number |
-| **VARCHAR** | Variable-length character string |
-| **TEXT** | Long text field |
-| **DATE** | Calendar date |
-| **DATETIME** | Date and time |
-| **1** | One record |
-| **0..1** | Zero or one record |
-| **0..*** | Zero or many records |
-| **Required Level** | Competency proficiency level required for a position |
-| **Current Level** | Competency proficiency level currently recorded for an employee |
-| **Assessed Level** | Competency proficiency level determined through an assessment |
-| **Gap** | Difference between the required competency level and the employee's assessed/current competency level |
-| **Historical Record** | Stored record of a significant previous system activity or generated result |
+  -----------------------------------------------------------------------
+  Term                                Meaning
+  ----------------------------------- -----------------------------------
+  **PK**                              Primary Key -- uniquely identifies
+                                      a record
 
----
+  **FK**                              Foreign Key -- references a record
+                                      in another table
 
-# 3. Database Entities
+  **INT**                             Integer / whole number
 
-The Phase 1 database contains the following core entities:
+  **VARCHAR**                         Variable-length character string
 
-1. `tbl_roles`
-2. `tbl_users`
-3. `tbl_offices`
-4. `tbl_employees`
-5. `tbl_positions`
-6. `tbl_competencies`
-7. `tbl_position_competencies`
-8. `tbl_employee_competencies`
-9. `tbl_assessments`
-10. `tbl_assessment_results`
-11. `tbl_gap_analysis_results`
-12. `tbl_historical_records`
+  **TEXT**                            Long text field
 
----
+  **DATE**                            Calendar date
+
+  **DATETIME**                        Date and time
+
+  **1**                               One record
+
+  **0..**\*                           Zero or many records
+
+  **Required Level**                  Competency proficiency level
+                                      required for a position
+
+  **Current Level**                   Competency proficiency level
+                                      currently recorded for an employee
+
+  **Gap Level**                       Calculated difference between the
+                                      required competency level and the
+                                      employee's current competency level
+  -----------------------------------------------------------------------
+
+------------------------------------------------------------------------
+
+# 3. Phase 1 Database Entities
+
+The revised Phase 1 database contains the following 11 entities:
+
+1.  `tbl_roles`
+2.  `tbl_users`
+3.  `tbl_offices`
+4.  `tbl_employees`
+5.  `tbl_positions`
+6.  `tbl_competencies`
+7.  `tbl_position_competencies`
+8.  `tbl_employee_competencies`
+9.  `tbl_gap_analyses`
+10. `tbl_gap_analysis_results`
+11. `tbl_historical_records`
+
+> **Scope note:** Separate assessment-session and assessment-result
+> tables are not included because they are not present in the revised
+> Phase 1 ERD.
+
+------------------------------------------------------------------------
 
 # 4. Database Entity Definitions
 
 ## 4.1 `tbl_roles`
 
-Stores the system roles used for role-based access control.
+Stores the system roles used for access control.
 
 ### Fields
 
-| Field | Data Type | Key | Description |
-|---|---|---|---|
-| `role_id` | INT | PK | Unique identifier for the role |
-| `role_name` | VARCHAR(50) | | Name of the system role |
-| `description` | VARCHAR(255) | | Description of the role and its access responsibilities |
-| `status` | VARCHAR(20) | | Current status of the role |
-| `created_at` | DATETIME | | Date and time the role was created |
-| `updated_at` | DATETIME | | Date and time the role was last updated |
+  Field           Data Type     Key   Description
+  --------------- ------------- ----- -----------------------------------------
+  `role_id`       INT(10)       PK    Unique identifier for the role
+  `role_name`     VARCHAR(50)         Name of the system role
+  `description`   TEXT                Description of the role
+  `status`        VARCHAR(20)         Current status of the role
+  `created_at`    DATETIME            Date and time the role was created
+  `updated_at`    DATETIME            Date and time the role was last updated
 
 ### Purpose
 
-This table supports role-based access control for the four Phase 1 user roles:
+Supports role-based access control for the system roles defined for
+Phase 1.
 
-- Executive
-- Technical Administrator
-- Administrative Administrator
-- Concerned Office
-
----
+------------------------------------------------------------------------
 
 ## 4.2 `tbl_users`
 
-Stores system user accounts and their association with employees and roles.
+Stores system user accounts and their assigned roles.
 
 ### Fields
 
-| Field | Data Type | Key | Description |
-|---|---|---|---|
-| `user_id` | INT | PK | Unique identifier for the system user |
-| `role_id` | INT | FK | References `tbl_roles.role_id` |
-| `employee_id` | INT | FK | References `tbl_employees.employee_id`, where applicable |
-| `username` | VARCHAR(50) | | Unique username used to access the system |
-| `email` | VARCHAR(100) | | User's email address |
-| `password_hash` | VARCHAR(255) | | Securely stored password hash |
-| `status` | VARCHAR(20) | | Current status of the user account |
-| `last_login` | DATETIME | | Date and time of the user's most recent login |
-| `created_at` | DATETIME | | Date and time the user account was created |
-| `updated_at` | DATETIME | | Date and time the user account was last updated |
+  -----------------------------------------------------------------------------------
+  Field             Data Type         Key               Description
+  ----------------- ----------------- ----------------- -----------------------------
+  `user_id`         INT(10)           PK                Unique identifier for the
+                                                        system user
+
+  `role_id`         INT(10)           FK                References
+                                                        `tbl_roles.role_id`
+
+  `employee_id`     INT(10)           FK                References
+                                                        `tbl_employees.employee_id`
+
+  `username`        VARCHAR(50)                         Username used to access the
+                                                        system
+
+  `email`           VARCHAR(100)                        User email address
+
+  `password_hash`   VARCHAR(255)                        Securely stored password hash
+
+  `status`          VARCHAR(20)                         Current status of the user
+                                                        account
+
+  `last_login`      DATETIME                            Date and time of the user's
+                                                        last login
+
+  `created_at`      DATETIME                            Date and time the user
+                                                        account was created
+
+  `updated_at`      DATETIME                            Date and time the user
+                                                        account was last updated
+  -----------------------------------------------------------------------------------
 
 ### Purpose
 
-Supports authentication, user management, and role-based access to system functions.
+Supports authentication, user management, and role-based access.
 
----
+------------------------------------------------------------------------
 
 ## 4.3 `tbl_offices`
 
-Stores organisational offices/departments represented in the system.
+Stores organisational offices represented in the system.
 
 ### Fields
 
-| Field | Data Type | Key | Description |
-|---|---|---|---|
-| `office_id` | INT | PK | Unique identifier for the office |
-| `office_code` | VARCHAR(50) | | Unique organisational office code |
-| `office_name` | VARCHAR(100) | | Name of the office |
-| `description` | TEXT | | Description of the office |
-| `status` | VARCHAR(20) | | Current status of the office |
-| `created_at` | DATETIME | | Date and time the office was created |
-| `updated_at` | DATETIME | | Date and time the office was last updated |
+  -----------------------------------------------------------------------
+  Field             Data Type         Key               Description
+  ----------------- ----------------- ----------------- -----------------
+  `office_id`       INT(10)           PK                Unique identifier
+                                                        for the office
+
+  `office_name`     VARCHAR(100)                        Name of the
+                                                        office
+
+  `office_code`     VARCHAR(50)                         Code identifying
+                                                        the office
+
+  `description`     TEXT                                Description of
+                                                        the office
+
+  `status`          VARCHAR(20)                         Current status of
+                                                        the office
+
+  `created_at`      DATETIME                            Date and time the
+                                                        office was
+                                                        created
+
+  `updated_at`      DATETIME                            Date and time the
+                                                        office was last
+                                                        updated
+  -----------------------------------------------------------------------
 
 ### Purpose
 
-Supports office-level organisation and allows Concerned Office users to access information associated with their office.
+Supports organisational structure and office-level employee information.
 
----
+------------------------------------------------------------------------
 
 ## 4.4 `tbl_employees`
 
-Stores employee profiles and organisational information.
+Stores employee profile and organisational information.
 
 ### Fields
 
-| Field | Data Type | Key | Description |
-|---|---|---|---|
-| `employee_id` | INT | PK | Unique identifier for the employee |
-| `office_id` | INT | FK | References `tbl_offices.office_id` |
-| `position_id` | INT | FK | References `tbl_positions.position_id` |
-| `employee_no` | VARCHAR(50) | | Unique employee identification number |
-| `first_name` | VARCHAR(50) | | Employee's first name |
-| `middle_name` | VARCHAR(50) | | Employee's middle name |
-| `last_name` | VARCHAR(50) | | Employee's last name |
-| `email` | VARCHAR(100) | | Employee's email address |
-| `phone` | VARCHAR(20) | | Employee's contact number |
-| `date_hired` | DATE | | Employee's date of appointment/hiring |
-| `status` | VARCHAR(20) | | Current employment status |
-| `created_at` | DATETIME | | Date and time the employee record was created |
-| `updated_at` | DATETIME | | Date and time the employee record was last updated |
+  -----------------------------------------------------------------------------------
+  Field             Data Type         Key               Description
+  ----------------- ----------------- ----------------- -----------------------------
+  `employee_id`     INT(10)           PK                Unique identifier for the
+                                                        employee
+
+  `position_id`     INT(10)           FK                References
+                                                        `tbl_positions.position_id`
+
+  `office_id`       INT(10)           FK                References
+                                                        `tbl_offices.office_id`
+
+  `employee_no`     VARCHAR(50)                         Employee identification
+                                                        number
+
+  `first_name`      VARCHAR(50)                         Employee first name
+
+  `middle_name`     VARCHAR(50)                         Employee middle name
+
+  `last_name`       VARCHAR(50)                         Employee last name
+
+  `email`           VARCHAR(100)                        Employee email address
+
+  `phone`           VARCHAR(20)                         Employee contact number
+
+  `date_hired`      DATE                                Employee hiring/appointment
+                                                        date
+
+  `status`          VARCHAR(20)                         Current employment status
+
+  `created_at`      DATETIME                            Date and time the employee
+                                                        record was created
+
+  `updated_at`      DATETIME                            Date and time the employee
+                                                        record was last updated
+  -----------------------------------------------------------------------------------
 
 ### Purpose
 
-Provides the employee profile used by competency profiling, assessment, gap analysis, reporting, and office-level employee management.
+Provides employee information used for competency profiling, gap
+analysis, and reporting.
 
----
+------------------------------------------------------------------------
 
 ## 4.5 `tbl_positions`
 
-Stores organisational positions and their related position information.
+Stores organisational positions.
 
 ### Fields
 
-| Field | Data Type | Key | Description |
-|---|---|---|---|
-| `position_id` | INT | PK | Unique identifier for the position |
-| `position_code` | VARCHAR(50) | | Unique code identifying the position |
-| `position_title` | VARCHAR(100) | | Title/name of the position |
-| `description` | TEXT | | Description of the position |
-| `department` | VARCHAR(100) | | Department or organisational unit associated with the position |
-| `employment_type` | VARCHAR(50) | | Type of employment associated with the position |
-| `status` | VARCHAR(20) | | Current status of the position |
-| `created_at` | DATETIME | | Date and time the position was created |
-| `updated_at` | DATETIME | | Date and time the position was last updated |
+  -------------------------------------------------------------------------
+  Field               Data Type         Key               Description
+  ------------------- ----------------- ----------------- -----------------
+  `position_id`       INT(10)           PK                Unique identifier
+                                                          for the position
+
+  `position_code`     VARCHAR(50)                         Code identifying
+                                                          the position
+
+  `position_title`    VARCHAR(100)                        Title/name of the
+                                                          position
+
+  `description`       TEXT                                Description of
+                                                          the position
+
+  `department`        VARCHAR(100)                        Department
+                                                          associated with
+                                                          the position
+
+  `employment_type`   VARCHAR(50)                         Employment type
+                                                          associated with
+                                                          the position
+
+  `status`            VARCHAR(20)                         Current status of
+                                                          the position
+
+  `created_at`        DATETIME                            Date and time the
+                                                          position was
+                                                          created
+
+  `updated_at`        DATETIME                            Date and time the
+                                                          position was last
+                                                          updated
+  -------------------------------------------------------------------------
 
 ### Purpose
 
-Defines the positions held by employees and provides the basis for determining the competency requirements for each position.
+Defines employee positions and provides the basis for determining
+competency requirements.
 
----
+------------------------------------------------------------------------
 
 ## 4.6 `tbl_competencies`
 
-Stores the core and leadership competencies used by the organisation.
+Stores the competency catalogue used by the system.
 
 ### Fields
 
-| Field | Data Type | Key | Description |
-|---|---|---|---|
-| `competency_id` | INT | PK | Unique identifier for the competency |
-| `competency_code` | VARCHAR(50) | | Unique code identifying the competency |
-| `competency_name` | VARCHAR(100) | | Name of the competency |
-| `description` | TEXT | | Description of the competency |
-| `competency_type` | VARCHAR(50) | | Classification of the competency, such as Core or Leadership |
-| `status` | VARCHAR(20) | | Current status of the competency |
-| `created_at` | DATETIME | | Date and time the competency was created |
-| `updated_at` | DATETIME | | Date and time the competency was last updated |
+  -----------------------------------------------------------------------------
+  Field               Data Type         Key               Description
+  ------------------- ----------------- ----------------- ---------------------
+  `competency_id`     INT(10)           PK                Unique identifier for
+                                                          the competency
+
+  `competency_code`   VARCHAR(50)                         Code identifying the
+                                                          competency
+
+  `competency_name`   VARCHAR(100)                        Name of the
+                                                          competency
+
+  `description`       TEXT                                Description of the
+                                                          competency
+
+  `competency_type`   VARCHAR(50)                         Classification/type
+                                                          of competency
+
+  `status`            VARCHAR(20)                         Current status of the
+                                                          competency
+
+  `created_at`        DATETIME                            Date and time the
+                                                          competency was
+                                                          created
+
+  `updated_at`        DATETIME                            Date and time the
+                                                          competency was last
+                                                          updated
+  -----------------------------------------------------------------------------
 
 ### Purpose
 
-Stores the competency catalogue used throughout the system. Competency names, types, and definitions are based on the competency framework supplied by the client.
+Stores competency definitions and classifications used in position
+requirements and employee competency profiles.
 
----
+------------------------------------------------------------------------
 
 ## 4.7 `tbl_position_competencies`
 
-Maps positions to their required competencies and required proficiency levels.
+Maps positions to their required competencies and proficiency levels.
 
 ### Fields
 
-| Field | Data Type | Key | Description |
-|---|---|---|---|
-| `position_competency_id` | INT | PK | Unique identifier for the position-competency mapping |
-| `position_id` | INT | FK | References `tbl_positions.position_id` |
-| `competency_id` | INT | FK | References `tbl_competencies.competency_id` |
-| `required_level` | INT | | Required proficiency level for the competency for the specified position |
-| `priority` | INT | | Priority of the competency requirement for the position |
-| `created_at` | DATETIME | | Date and time the mapping was created |
-| `updated_at` | DATETIME | | Date and time the mapping was last updated |
+  -------------------------------------------------------------------------------------------------
+  Field                      Data Type         Key               Description
+  -------------------------- ----------------- ----------------- ----------------------------------
+  `position_competency_id`   INT(10)           PK                Unique identifier for the
+                                                                 position-competency mapping
+
+  `position_id`              INT(10)           FK                References
+                                                                 `tbl_positions.position_id`
+
+  `competency_id`            INT(10)           FK                References
+                                                                 `tbl_competencies.competency_id`
+
+  `required_level`           INT(3)                              Required proficiency level for the
+                                                                 position
+
+  `priority`                 INT(3)                              Priority of the competency
+                                                                 requirement
+
+  `created_at`               DATETIME                            Date and time the mapping was
+                                                                 created
+
+  `updated_at`               DATETIME                            Date and time the mapping was last
+                                                                 updated
+  -------------------------------------------------------------------------------------------------
 
 ### Purpose
 
-Represents the competency requirements for each position.
+Defines which competencies are required for each position and the
+required proficiency level.
 
-A position may require multiple competencies, and the same competency may be required by multiple positions.
-
-The `required_level` is based on the client's competency proficiency-level standard.
-
----
+------------------------------------------------------------------------
 
 ## 4.8 `tbl_employee_competencies`
 
@@ -257,458 +386,660 @@ Stores the current competency profile of each employee.
 
 ### Fields
 
-| Field | Data Type | Key | Description |
-|---|---|---|---|
-| `employee_competency_id` | INT | PK | Unique identifier for the employee competency record |
-| `employee_id` | INT | FK | References `tbl_employees.employee_id` |
-| `competency_id` | INT | FK | References `tbl_competencies.competency_id` |
-| `current_level` | INT | | Current recorded proficiency level of the employee |
-| `evidence` | TEXT | | Supporting evidence or notes for the recorded competency level |
-| `assessed_date` | DATE | | Date the current competency level was assessed or recorded |
-| `status` | VARCHAR(20) | | Current status of the employee competency record |
-| `created_at` | DATETIME | | Date and time the record was created |
-| `updated_at` | DATETIME | | Date and time the record was last updated |
+  -------------------------------------------------------------------------------------------------
+  Field                      Data Type         Key               Description
+  -------------------------- ----------------- ----------------- ----------------------------------
+  `employee_competency_id`   INT(10)           PK                Unique identifier for the employee
+                                                                 competency record
+
+  `employee_id`              INT(10)           FK                References
+                                                                 `tbl_employees.employee_id`
+
+  `competency_id`            INT(10)           FK                References
+                                                                 `tbl_competencies.competency_id`
+
+  `current_level`            INT(3)                              Current recorded competency
+                                                                 proficiency level
+
+  `evidence`                 TEXT                                Supporting evidence or notes for
+                                                                 the recorded level
+
+  `last_updated`             DATE                                Date the competency record was
+                                                                 last updated
+
+  `status`                   VARCHAR(20)                         Current status of the employee
+                                                                 competency record
+
+  `created_at`               DATETIME                            Date and time the record was
+                                                                 created
+
+  `updated_at`               DATETIME                            Date and time the record was last
+                                                                 updated
+  -------------------------------------------------------------------------------------------------
 
 ### Purpose
 
-Stores the employee's competency profile and current competency level.
+Stores the employee's current competency profile. These current
+competency levels are used as inputs to gap analysis.
 
-The current competency level is compared against the required competency level during gap analysis.
+------------------------------------------------------------------------
 
----
+## 4.9 `tbl_gap_analyses`
 
-## 4.9 `tbl_assessments`
-
-Stores competency assessment sessions conducted for employees.
+Stores each generated competency gap-analysis instance.
 
 ### Fields
 
-| Field | Data Type | Key | Description |
-|---|---|---|---|
-| `assessment_id` | INT | PK | Unique identifier for the assessment |
-| `employee_id` | INT | FK | References `tbl_employees.employee_id` |
-| `assessment_date` | DATE | | Date the assessment was conducted |
-| `assessment_type` | VARCHAR(50) | | Type/category of assessment |
-| `assessor` | VARCHAR(100) | | Name or identifier of the person who conducted the assessment |
-| `status` | VARCHAR(20) | | Current status of the assessment |
-| `remarks` | TEXT | | Additional assessment notes |
-| `created_at` | DATETIME | | Date and time the assessment record was created |
-| `updated_at` | DATETIME | | Date and time the assessment record was last updated |
+  -------------------------------------------------------------------------------------
+  Field               Data Type         Key               Description
+  ------------------- ----------------- ----------------- -----------------------------
+  `gap_analysis_id`   INT(10)           PK                Unique identifier for the
+                                                          gap-analysis instance
+
+  `employee_id`       INT(10)           FK                References
+                                                          `tbl_employees.employee_id`
+
+  `position_id`       INT(10)           FK                References
+                                                          `tbl_positions.position_id`
+
+  `analysis_date`     DATE                                Date the gap analysis was
+                                                          generated
+
+  `status`            VARCHAR(20)                         Current status of the gap
+                                                          analysis
+
+  `remarks`           TEXT                                Additional notes about the
+                                                          analysis
+
+  `created_by`        INT(10)                             Identifier of the user who
+                                                          created/generated the
+                                                          analysis
+
+  `created_at`        DATETIME                            Date and time the gap
+                                                          analysis was created
+
+  `updated_at`        DATETIME                            Date and time the gap
+                                                          analysis was last updated
+  -------------------------------------------------------------------------------------
 
 ### Purpose
 
-Represents an assessment session for an employee. One assessment can contain results for multiple competencies.
+Represents a complete gap-analysis run for an employee and position.
 
----
+One gap analysis can contain multiple competency-level results in
+`tbl_gap_analysis_results`.
 
-## 4.10 `tbl_assessment_results`
+------------------------------------------------------------------------
 
-Stores the competency-level results produced during an assessment.
+## 4.10 `tbl_gap_analysis_results`
+
+Stores the individual competency results produced by a gap analysis.
 
 ### Fields
 
-| Field | Data Type | Key | Description |
-|---|---|---|---|
-| `assessment_result_id` | INT | PK | Unique identifier for the assessment result |
-| `assessment_id` | INT | FK | References `tbl_assessments.assessment_id` |
-| `competency_id` | INT | FK | References `tbl_competencies.competency_id` |
-| `assessed_level` | INT | | Proficiency level determined for the competency during the assessment |
-| `remarks` | TEXT | | Additional comments or observations about the competency result |
-| `created_at` | DATETIME | | Date and time the assessment result was created |
-| `updated_at` | DATETIME | | Date and time the assessment result was last updated |
+  ---------------------------------------------------------------------------------------------------
+  Field                      Data Type         Key               Description
+  -------------------------- ----------------- ----------------- ------------------------------------
+  `gap_analysis_result_id`   INT(10)           PK                Unique identifier for the
+                                                                 gap-analysis result
+
+  `gap_analysis_id`          INT(10)           FK                References
+                                                                 `tbl_gap_analyses.gap_analysis_id`
+
+  `competency_id`            INT(10)           FK                References
+                                                                 `tbl_competencies.competency_id`
+
+  `required_level`           INT(3)                              Required competency level used in
+                                                                 the analysis
+
+  `current_level`            INT(3)                              Employee current competency level
+                                                                 used in the analysis
+
+  `gap_level`                INT(3)                              Calculated gap between required and
+                                                                 current level
+
+  `status`                   VARCHAR(20)                         Result status/classification
+
+  `remarks`                  TEXT                                Additional notes about the
+                                                                 competency gap result
+
+  `created_at`               DATETIME                            Date and time the result was created
+
+  `updated_at`               DATETIME                            Date and time the result was last
+                                                                 updated
+  ---------------------------------------------------------------------------------------------------
 
 ### Purpose
 
-Stores the individual competency results within an assessment.
+Stores the detailed competency-level results of each gap-analysis run.
 
-This table allows one assessment to contain multiple competency results.
+The table preserves the required and current levels used at the time of
+analysis, allowing previously generated results to remain available for
+reporting and historical tracking.
 
----
+### Gap Calculation
 
-## 4.11 `tbl_gap_analysis_results`
+The basic calculation represented by the database is:
 
-Stores the calculated competency gap results generated by the system.
+``` text
+Gap Level = Required Level - Current Level
+```
+
+For example:
+
+``` text
+Required Level = 4
+Current Level  = 2
+Gap Level      = 2
+```
+
+The exact interpretation of the `status` value should follow the
+application's confirmed business rules.
+
+------------------------------------------------------------------------
+
+## 4.11 `tbl_historical_records`
+
+Stores historical employee-related records.
 
 ### Fields
 
-| Field | Data Type | Key | Description |
-|---|---|---|---|
-| `gap_analysis_result_id` | INT | PK | Unique identifier for the gap analysis result |
-| `assessment_id` | INT | FK | References `tbl_assessments.assessment_id` |
-| `employee_id` | INT | FK | References `tbl_employees.employee_id` |
-| `position_id` | INT | FK | References `tbl_positions.position_id` |
-| `competency_id` | INT | FK | References `tbl_competencies.competency_id` |
-| `required_level` | INT | | Required competency level for the employee's position at the time of analysis |
-| `current_level` | INT | | Employee's current competency level used in the analysis |
-| `assessed_level` | INT | | Employee's assessed competency level used in the analysis |
-| `gap_value` | INT | | Calculated difference between the required level and the level used for gap analysis |
-| `gap_status` | VARCHAR(20) | | Result classification, such as Meets, Below Requirement, or Exceeds |
-| `analysis_date` | DATE | | Date the gap analysis was generated |
-| `remarks` | TEXT | | Additional notes associated with the gap result |
-| `created_at` | DATETIME | | Date and time the gap analysis result was created |
-| `updated_at` | DATETIME | | Date and time the gap analysis result was last updated |
+  ------------------------------------------------------------------------------------
+  Field              Data Type         Key               Description
+  ------------------ ----------------- ----------------- -----------------------------
+  `record_id`        INT(10)           PK                Unique identifier for the
+                                                         historical record
+
+  `employee_id`      INT(10)           FK                References
+                                                         `tbl_employees.employee_id`
+
+  `record_type`      VARCHAR(50)                         Type/category of historical
+                                                         record
+
+  `description`      TEXT                                Description of the historical
+                                                         record
+
+  `effective_date`   DATE                                Date the historical record
+                                                         became effective
+
+  `created_at`       DATETIME                            Date and time the historical
+                                                         record was created
+
+  `updated_at`       DATETIME                            Date and time the historical
+                                                         record was last updated
+  ------------------------------------------------------------------------------------
 
 ### Purpose
 
-Stores the actual output of the competency gap-analysis process.
+Provides historical storage for significant employee-related records and
+activities represented by the system.
 
-This table is important for Phase 1 because gap-analysis results need to remain available for:
+Detailed gap-analysis results are stored directly in `tbl_gap_analyses`
+and `tbl_gap_analysis_results`.
 
-- Employee competency reports
-- Position-level competency reports
-- Office-level reports
-- Executive dashboards
-- Historical comparison
-- Decision support
-- Future reference without recalculating an old result
-
-The system should retain the competency requirement and employee level values used at the time of analysis so that previously generated results remain traceable even if competency requirements or employee profiles are updated later.
-
----
-
-## 4.12 `tbl_historical_records`
-
-Stores historical records of significant system activities and previously generated results.
-
-### Fields
-
-| Field | Data Type | Key | Description |
-|---|---|---|---|
-| `record_id` | INT | PK | Unique identifier for the historical record |
-| `employee_id` | INT | FK | References `tbl_employees.employee_id`, where applicable |
-| `record_type` | VARCHAR(50) | | Type of historical record |
-| `reference_id` | INT | | Identifier of the related record, where applicable |
-| `description` | TEXT | | Description of the historical activity or result |
-| `effective_date` | DATE | | Date the historical record became effective |
-| `created_at` | DATETIME | | Date and time the historical record was created |
-| `updated_at` | DATETIME | | Date and time the historical record was last updated |
-
-### Purpose
-
-Provides historical traceability for significant employee-related system records and activities.
-
-For competency gap analysis, the detailed calculated result is stored in `tbl_gap_analysis_results`. `tbl_historical_records` can additionally provide a general historical reference/audit entry for significant events or previously generated reports/results.
-
----
+------------------------------------------------------------------------
 
 # 5. Entity Relationships
 
-The main database relationships are as follows.
+The following relationships correspond to the revised ERD.
 
-## 5.1 User Management
+## 5.1 Roles and Users
 
 ### `tbl_roles` → `tbl_users`
 
-- One role can be assigned to zero or many users.
-- Each user is assigned to one role.
+-   One role can be associated with zero or many users.
+-   Each user references one role.
 
-**Relationship:**
+**Foreign key:**
 
-`tbl_roles.role_id` → `tbl_users.role_id`
+``` text
+tbl_users.role_id → tbl_roles.role_id
+```
 
----
+**Cardinality:** `1 : 0..*`
 
-## 5.2 Office and Employee Management
+------------------------------------------------------------------------
 
-### `tbl_offices` → `tbl_employees`
-
-- One office can have zero or many employees.
-- Each employee belongs to one office.
-
-**Relationship:**
-
-`tbl_offices.office_id` → `tbl_employees.office_id`
-
-### `tbl_positions` → `tbl_employees`
-
-- One position can be assigned to zero or many employees.
-- Each employee is assigned to one position.
-
-**Relationship:**
-
-`tbl_positions.position_id` → `tbl_employees.position_id`
+## 5.2 Employees and Users
 
 ### `tbl_employees` → `tbl_users`
 
-- An employee may have zero or one system user account.
-- A user account may be associated with one employee.
+The revised ERD associates users with employees through `employee_id`.
 
-**Relationship:**
+**Foreign key:**
 
-`tbl_employees.employee_id` → `tbl_users.employee_id`
+``` text
+tbl_users.employee_id → tbl_employees.employee_id
+```
 
----
+The cardinality should follow the revised ERD.
 
-## 5.3 Position and Competency Management
+------------------------------------------------------------------------
+
+## 5.3 Offices and Employees
+
+### `tbl_offices` → `tbl_employees`
+
+-   One office can have zero or many employees.
+-   Each employee references an office.
+
+**Foreign key:**
+
+``` text
+tbl_employees.office_id → tbl_offices.office_id
+```
+
+**Cardinality:** `1 : 0..*`
+
+------------------------------------------------------------------------
+
+## 5.4 Positions and Employees
+
+### `tbl_positions` → `tbl_employees`
+
+-   One position can be associated with zero or many employees.
+-   Each employee references a position.
+
+**Foreign key:**
+
+``` text
+tbl_employees.position_id → tbl_positions.position_id
+```
+
+**Cardinality:** `1 : 0..*`
+
+------------------------------------------------------------------------
+
+## 5.5 Positions and Position Competencies
 
 ### `tbl_positions` → `tbl_position_competencies`
 
-- One position can have zero or many competency requirements.
-- Each position-competency record belongs to one position.
+-   One position can have zero or many competency requirements.
+-   Each position-competency record references one position.
 
-**Relationship:**
+**Foreign key:**
 
-`tbl_positions.position_id` → `tbl_position_competencies.position_id`
+``` text
+tbl_position_competencies.position_id → tbl_positions.position_id
+```
+
+**Cardinality:** `1 : 0..*`
+
+------------------------------------------------------------------------
+
+## 5.6 Competencies and Position Competencies
 
 ### `tbl_competencies` → `tbl_position_competencies`
 
-- One competency can be required by zero or many positions.
-- Each position-competency record references one competency.
+-   One competency can be associated with zero or many position
+    requirements.
+-   Each position-competency record references one competency.
 
-**Relationship:**
+**Foreign key:**
 
-`tbl_competencies.competency_id` → `tbl_position_competencies.competency_id`
+``` text
+tbl_position_competencies.competency_id → tbl_competencies.competency_id
+```
 
-This creates a many-to-many relationship between positions and competencies through `tbl_position_competencies`.
+**Cardinality:** `1 : 0..*`
 
----
+This creates a many-to-many relationship between positions and
+competencies through `tbl_position_competencies`.
 
-## 5.4 Employee Competency Profiling
+------------------------------------------------------------------------
+
+## 5.7 Employees and Employee Competencies
 
 ### `tbl_employees` → `tbl_employee_competencies`
 
-- One employee can have zero or many competency records.
-- Each employee competency record belongs to one employee.
+-   One employee can have zero or many competency records.
+-   Each employee competency record references one employee.
 
-**Relationship:**
+**Foreign key:**
 
-`tbl_employees.employee_id` → `tbl_employee_competencies.employee_id`
+``` text
+tbl_employee_competencies.employee_id → tbl_employees.employee_id
+```
+
+**Cardinality:** `1 : 0..*`
+
+------------------------------------------------------------------------
+
+## 5.8 Competencies and Employee Competencies
 
 ### `tbl_competencies` → `tbl_employee_competencies`
 
-- One competency can be associated with zero or many employees.
-- Each employee competency record references one competency.
+-   One competency can be associated with zero or many employee
+    competency records.
+-   Each employee competency record references one competency.
 
-**Relationship:**
+**Foreign key:**
 
-`tbl_competencies.competency_id` → `tbl_employee_competencies.competency_id`
+``` text
+tbl_employee_competencies.competency_id → tbl_competencies.competency_id
+```
 
-This creates a many-to-many relationship between employees and competencies through `tbl_employee_competencies`.
+**Cardinality:** `1 : 0..*`
 
----
+This creates a many-to-many relationship between employees and
+competencies through `tbl_employee_competencies`.
 
-## 5.5 Assessment Management
+------------------------------------------------------------------------
 
-### `tbl_employees` → `tbl_assessments`
+## 5.9 Employees and Gap Analyses
 
-- One employee can have zero or many assessments.
-- Each assessment belongs to one employee.
+### `tbl_employees` → `tbl_gap_analyses`
 
-**Relationship:**
+-   One employee can have zero or many gap analyses.
+-   Each gap analysis references one employee.
 
-`tbl_employees.employee_id` → `tbl_assessments.employee_id`
+**Foreign key:**
 
-### `tbl_assessments` → `tbl_assessment_results`
+``` text
+tbl_gap_analyses.employee_id → tbl_employees.employee_id
+```
 
-- One assessment can have zero or many assessment results.
-- Each assessment result belongs to one assessment.
+**Cardinality:** `1 : 0..*`
 
-**Relationship:**
+------------------------------------------------------------------------
 
-`tbl_assessments.assessment_id` → `tbl_assessment_results.assessment_id`
+## 5.10 Positions and Gap Analyses
 
-### `tbl_competencies` → `tbl_assessment_results`
+### `tbl_positions` → `tbl_gap_analyses`
 
-- One competency can appear in zero or many assessment results.
-- Each assessment result references one competency.
+-   One position can be associated with zero or many gap analyses.
+-   Each gap analysis references one position.
 
-**Relationship:**
+**Foreign key:**
 
-`tbl_competencies.competency_id` → `tbl_assessment_results.competency_id`
+``` text
+tbl_gap_analyses.position_id → tbl_positions.position_id
+```
 
----
+**Cardinality:** `1 : 0..*`
 
-## 5.6 Gap Analysis
+------------------------------------------------------------------------
 
-### `tbl_assessments` → `tbl_gap_analysis_results`
+## 5.11 Gap Analyses and Gap Analysis Results
 
-- One assessment can produce zero or many gap-analysis results.
-- Each gap-analysis result may be associated with one assessment.
+### `tbl_gap_analyses` → `tbl_gap_analysis_results`
 
-**Relationship:**
+-   One gap analysis can contain zero or many competency-level results.
+-   Each gap-analysis result belongs to one gap analysis.
 
-`tbl_assessments.assessment_id` → `tbl_gap_analysis_results.assessment_id`
+**Foreign key:**
 
-### `tbl_employees` → `tbl_gap_analysis_results`
+``` text
+tbl_gap_analysis_results.gap_analysis_id → tbl_gap_analyses.gap_analysis_id
+```
 
-- One employee can have zero or many historical gap-analysis results.
-- Each gap-analysis result belongs to one employee.
+**Cardinality:** `1 : 0..*`
 
-**Relationship:**
+------------------------------------------------------------------------
 
-`tbl_employees.employee_id` → `tbl_gap_analysis_results.employee_id`
-
-### `tbl_positions` → `tbl_gap_analysis_results`
-
-- One position can be associated with zero or many gap-analysis results.
-- Each gap-analysis result references the position used during the analysis.
-
-**Relationship:**
-
-`tbl_positions.position_id` → `tbl_gap_analysis_results.position_id`
+## 5.12 Competencies and Gap Analysis Results
 
 ### `tbl_competencies` → `tbl_gap_analysis_results`
 
-- One competency can have zero or many gap-analysis results.
-- Each gap-analysis result references one competency.
+-   One competency can appear in zero or many gap-analysis results.
+-   Each gap-analysis result references one competency.
 
-**Relationship:**
+**Foreign key:**
 
-`tbl_competencies.competency_id` → `tbl_gap_analysis_results.competency_id`
+``` text
+tbl_gap_analysis_results.competency_id → tbl_competencies.competency_id
+```
 
----
+**Cardinality:** `1 : 0..*`
 
-## 5.7 Historical Records
+------------------------------------------------------------------------
+
+## 5.13 Employees and Historical Records
 
 ### `tbl_employees` → `tbl_historical_records`
 
-- One employee can have zero or many historical records.
-- Each historical record may be associated with an employee.
+-   One employee can have zero or many historical records.
+-   Each historical record references an employee.
 
-**Relationship:**
+**Foreign key:**
 
-`tbl_employees.employee_id` → `tbl_historical_records.employee_id`
-
----
-
-# 6. Competency Gap Analysis Logic
-
-The Phase 1 system compares the competency requirement of an employee's position with the employee's competency level.
-
-The basic calculation is:
-
-```text
-Gap = Required Level - Comparison Level
+``` text
+tbl_historical_records.employee_id → tbl_employees.employee_id
 ```
 
-The comparison level may be based on the current employee competency level and/or the assessed competency level according to the assessment workflow.
+**Cardinality:** `1 : 0..*`
 
-A positive gap indicates that the employee's level is below the required level.
+------------------------------------------------------------------------
 
-A zero gap indicates that the required level is met.
+# 6. Gap Analysis Workflow
 
-A negative gap indicates that the employee's level exceeds the required level.
+The Phase 1 database supports the following workflow:
 
-The exact business rule for selecting `current_level` versus `assessed_level` as the comparison value should follow the client's confirmed assessment/gap-analysis workflow.
+``` text
+Employee
+    │
+    ├── Position
+    │      │
+    │      └── Position Competencies
+    │                 │
+    │                 └── Required Level
+    │
+    └── Employee Competencies
+               │
+               └── Current Level
+                        │
+                        ▼
+                  Gap Analysis
+                        │
+                        ▼
+              Gap Analysis Results
+                        │
+                        ▼
+                  Reporting /
+                Historical Tracking
+```
 
----
+The system compares the required competency level for an employee's
+position with the employee's current competency level.
+
+``` text
+Gap Level = Required Level - Current Level
+```
+
+The generated result is stored in `tbl_gap_analysis_results`.
+
+------------------------------------------------------------------------
 
 # 7. Historical Gap Analysis Storage
 
-Gap-analysis results are treated as generated system results and should not rely only on recalculating data from the current employee profile.
+The gap-analysis design separates the **analysis instance** from its
+**individual competency results**.
 
-For each generated gap-analysis result, the system stores:
+### Analysis-level record
 
-- Employee
-- Position
-- Competency
-- Required level
-- Current level
-- Assessed level
-- Calculated gap
-- Gap status
-- Analysis date
-- Related assessment
+`tbl_gap_analyses`
 
-This preserves the values used when the analysis was generated.
+Stores:
 
-For example, if a position originally required competency level `3` and later the requirement is changed to level `4`, an older gap-analysis result should still retain the original `required_level = 3` used when that historical analysis was generated.
+-   Employee
+-   Position
+-   Analysis date
+-   Analysis status
+-   Remarks
+-   User who generated the analysis
 
----
+### Competency-level result
+
+`tbl_gap_analysis_results`
+
+Stores:
+
+-   Competency
+-   Required level
+-   Current level
+-   Calculated gap level
+-   Result status
+-   Remarks
+
+This structure allows one gap analysis to contain multiple competency
+results.
+
+The required and current levels used in the analysis are stored in the
+result table so that historical results can remain traceable even if
+current employee competency profiles or position requirements are
+changed later.
+
+------------------------------------------------------------------------
 
 # 8. Phase 1 Scope Exclusions
 
 The following modules are excluded from the Phase 1 database:
 
-- Training & Development
-- Individual Development Plan (IDP)
-- Talent & Succession Planning
+-   Training & Development
+-   Individual Development Plan (IDP)
+-   Talent & Succession Planning
 
-These are considered potential future enhancements and should not be implemented as Phase 1 database entities unless the client provides further confirmation.
+Separate assessment-session and assessment-result entities are also
+excluded from this revised database design because they are not
+represented in the revised Phase 1 ERD.
 
----
+------------------------------------------------------------------------
 
-# 9. Data Integrity and Design Considerations
+# 9. Data Integrity Considerations
 
-The database should maintain referential integrity between related entities.
+The database implementation should maintain referential integrity
+between related entities.
 
-Recommended considerations include:
+Recommended considerations:
 
-- Primary keys must uniquely identify each record.
-- Foreign keys must reference valid parent records.
-- Employee numbers should be unique.
-- Position codes should be unique.
-- Competency codes should be unique.
-- Usernames should be unique.
-- Position-competency combinations should not be duplicated.
-- Employee-competency combinations should not be duplicated where only one current profile record is intended.
-- Required and competency levels should follow the proficiency scale defined by the client.
-- Historical gap-analysis results should retain the values used during the original analysis.
-- Status fields should use a consistent set of application-level values.
+-   Primary keys must uniquely identify records.
+-   Foreign keys must reference valid parent records.
+-   Employee numbers should be unique where required by the application.
+-   Position codes should be unique where required by the application.
+-   Competency codes should be unique where required by the application.
+-   Usernames should be unique.
+-   Position-competency combinations should not be duplicated.
+-   Employee-competency combinations should not be duplicated where only
+    one current profile record is intended.
+-   Required and current competency levels should follow the competency
+    proficiency scale supplied by the client.
+-   Gap-analysis results should retain the values used when the analysis
+    was generated.
+-   Status values should be kept consistent across the application.
 
----
+------------------------------------------------------------------------
 
 # 10. Summary of Phase 1 Tables
 
-| No. | Table | Main Purpose |
-|---:|---|---|
-| 1 | `tbl_roles` | System roles and access categories |
-| 2 | `tbl_users` | User accounts and authentication-related data |
-| 3 | `tbl_offices` | Organisational offices |
-| 4 | `tbl_employees` | Employee profiles |
-| 5 | `tbl_positions` | Organisational positions |
-| 6 | `tbl_competencies` | Competency catalogue |
-| 7 | `tbl_position_competencies` | Position competency requirements |
-| 8 | `tbl_employee_competencies` | Employee competency profiles |
-| 9 | `tbl_assessments` | Assessment sessions |
-| 10 | `tbl_assessment_results` | Competency-level assessment results |
-| 11 | `tbl_gap_analysis_results` | Generated competency gap-analysis results |
-| 12 | `tbl_historical_records` | Historical/audit records and references |
+    No. Table                         Main Purpose
+  ----- ----------------------------- -------------------------------------
+      1 `tbl_roles`                   System roles and access categories
+      2 `tbl_users`                   User accounts
+      3 `tbl_offices`                 Organisational offices
+      4 `tbl_employees`               Employee profiles
+      5 `tbl_positions`               Organisational positions
+      6 `tbl_competencies`            Competency catalogue
+      7 `tbl_position_competencies`   Position competency requirements
+      8 `tbl_employee_competencies`   Employee competency profiles
+      9 `tbl_gap_analyses`            Gap-analysis instances
+     10 `tbl_gap_analysis_results`    Individual competency gap results
+     11 `tbl_historical_records`      Historical employee-related records
 
----
+------------------------------------------------------------------------
 
-# 11. Phase 1 Database Flow
+# 11. Phase 1 Database Relationship Summary
 
-```text
-OFFICE
-   │
-   └── EMPLOYEE
-          │
-          ├── USER
-          │     └── ROLE
-          │
-          ├── POSITION
-          │     └── POSITION_COMPETENCIES
-          │              └── COMPETENCY
-          │
-          ├── EMPLOYEE_COMPETENCIES
-          │              └── COMPETENCY
-          │
-          └── ASSESSMENTS
-                 │
-                 └── ASSESSMENT_RESULTS
-                           │
-                           └── COMPETENCY
+``` text
+tbl_roles
+    │
+    └── tbl_users
+             │
+             └── tbl_employees
+                     │
+          ┌──────────┼──────────┐
+          │          │          │
+          ▼          ▼          ▼
+   tbl_offices  tbl_positions  tbl_employee_competencies
+                     │                  │
+                     ▼                  ▼
+             tbl_position_competencies tbl_competencies
+                     │
+                     └──────────┐
+                                │
+                                ▼
+                        tbl_gap_analyses
+                                │
+                                ▼
+                     tbl_gap_analysis_results
+                                │
+                                ▼
+                         tbl_competencies
 
-POSITION + COMPETENCY + EMPLOYEE/ASSESSMENT DATA
-                         │
-                         ▼
-                GAP ANALYSIS RESULTS
-                         │
-                         ▼
-              HISTORICAL / REPORTING
+tbl_employees
+      │
+      ▼
+tbl_historical_records
 ```
 
----
+------------------------------------------------------------------------
 
-# 12. Notes
+# 12. ERD--Dictionary Synchronisation Notes
 
-1. Table and field names are indicative and may be adjusted during implementation if required.
-2. Data types are based on common MySQL/Laravel-compatible types.
-3. The database is aligned with the client-confirmed Phase 1 system architecture.
-4. The competency proficiency levels should be populated according to the competency-level standards supplied by the client.
-5. The database design supports employee competency profiling, competency assessment, gap analysis, reporting, and historical result storage.
-6. Training & Development, IDP, and Talent & Succession Planning are excluded from Phase 1.
-7. Additional fields may be introduced during implementation if required by confirmed business rules, security requirements, or API integration.
-8. The ERD and data dictionary should remain synchronised with the implemented MySQL schema and Laravel models/migrations.
-9. This document represents the current Phase 1 database design and may be refined following further client validation or implementation findings.
+This document is intended to remain synchronized with the revised Phase
+1 ERD.
+
+The following corrections were made compared with the previous
+dictionary:
+
+1.  Added `tbl_gap_analyses`, which is present in the revised ERD.
+2.  Removed `tbl_assessments`, which is not present in the revised ERD.
+3.  Removed `tbl_assessment_results`, which is not present in the
+    revised ERD.
+4.  Changed the gap result relationship from `assessment_id` to
+    `gap_analysis_id`.
+5.  Changed the gap result field from `gap_value` to `gap_level` to
+    match the ERD.
+6.  Changed the gap result field from `gap_status` to `status` to match
+    the ERD.
+7.  Changed `tbl_employee_competencies.assessed_date` to `last_updated`
+    to match the ERD.
+8.  Kept `tbl_historical_records` aligned with the fields shown in the
+    revised ERD.
+9.  Kept the gap-analysis structure as an analysis header
+    (`tbl_gap_analyses`) plus detailed results
+    (`tbl_gap_analysis_results`).
+10. Phase 1 excludes Training & Development, IDP, and Talent &
+    Succession Planning.
+
+------------------------------------------------------------------------
+
+# 13. Final Phase 1 Structure
+
+The final database structure represented by this dictionary is:
+
+``` text
+USER MANAGEMENT
+├── tbl_roles
+└── tbl_users
+
+EMPLOYEE MANAGEMENT
+├── tbl_employees
+├── tbl_positions
+└── tbl_offices
+
+COMPETENCY MANAGEMENT
+├── tbl_competencies
+├── tbl_position_competencies
+└── tbl_employee_competencies
+
+GAP ANALYSIS
+├── tbl_gap_analyses
+└── tbl_gap_analysis_results
+
+HISTORICAL RECORDS
+└── tbl_historical_records
+```
+
+This dictionary should be used together with the revised ERD as the
+reference for creating the MySQL database and, subsequently, the Laravel
+migrations and Eloquent models.
