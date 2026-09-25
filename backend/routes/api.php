@@ -215,11 +215,11 @@ Route::controller(GapAnalysisResultController::class)
     ->group(function () {
 
         // GapAnalysis CRUD
-        Route::get('gap-analysis-results', 'index');
-        Route::post('gap-analysis-results', 'store');
-        Route::get('gap-analysis-results/{gap_analysis_result_id}', 'show');
-        Route::put('gap-analysis-results/{gap_analysis_result_id}', 'update');
-        Route::delete('gap-analysis-results/{gap_analysis_result_id}', 'destroy');
+        Route::get('gap-analyses-results', 'index');
+        Route::post('gap-analyses-results', 'store');
+        Route::get('gap-analyses-results/{gap_analysis_result_id}', 'show');
+        Route::put('gap-analyses-results/{gap_analysis_result_id}', 'update');
+        Route::delete('gap-analyses-results/{gap_analysis_result_id}', 'destroy');
        
         //
         Route::get('employees/{employee_id}/gap-analysis-results', 'getGapResultByEmployee');
