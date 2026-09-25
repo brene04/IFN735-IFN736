@@ -222,8 +222,8 @@ Route::controller(GapAnalysisResultController::class)
         Route::delete('gap-analyses-results/{gap_analysis_result_id}', 'destroy');
        
         //
-        Route::get('employees/{employee_id}/gap-analysis-results', 'getGapResultByEmployee');
-        Route::get('units/{unit_id}/gap-analysis-results', 'getGapResultByUnit');
+        Route::get('employees/{employee_id}/gap-analyses-results', 'getGapResultByEmployee');
+        Route::get('units/{unit_id}/gap-analyses-results', 'getGapResultByUnit');
    });
 
 
