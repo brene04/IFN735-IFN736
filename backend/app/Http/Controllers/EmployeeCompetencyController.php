@@ -7,7 +7,7 @@ class EmployeeCompetencyController extends Controller
     /**
      * Display a listing of employee competency.
      */
-    public function index(int $employee_id)
+    public function getEmployeeCompetencies(int $employee_id)
     {
         //
     }
@@ -15,7 +15,7 @@ class EmployeeCompetencyController extends Controller
     /**
      * Store a newly created employee competency in storage.
      */
-    public function store(int $employee_id)
+    public function createEmployeeCompetency(int $employee_id)
     {
         //
     }
@@ -23,7 +23,7 @@ class EmployeeCompetencyController extends Controller
     /**
      * Display the specified employee competency.
      */
-    public function show(int $employee_id, int $employee_competency_id)
+    public function getSingleEmployeeCompetency(int $employee_id, int $employee_competency_id)
     {
         //
     }
@@ -31,7 +31,7 @@ class EmployeeCompetencyController extends Controller
     /**
      * Update the specified employee competency in storage.
      */
-    public function update(int $employee_id, int $employee_competency_id)
+    public function updateEmployeeCompetency(int $employee_id, int $employee_competency_id)
     {
         //
     }
@@ -39,7 +39,7 @@ class EmployeeCompetencyController extends Controller
     /**
      * Remove the specified employee competency from storage.
      */
-    public function destroy(int $employee_id, int $employee_competency_id)
+    public function deleteEmployeeCompetency(int $employee_id, int $employee_competency_id)
     {
         //
     }

@@ -7,7 +7,7 @@ class PositionCompetencyController extends Controller
     /**
      * Display a listing of position competency.
      */
-    public function index(int $position_id)
+    public function getPositionCompetencies(int $position_id)
     {
         //
     }
@@ -15,7 +15,7 @@ class PositionCompetencyController extends Controller
     /**
      * Store a newly created position competency in storage.
      */
-    public function store(int $position_id)
+    public function createPositionCompetency(int $position_id)
     {
         //
     }
@@ -23,7 +23,7 @@ class PositionCompetencyController extends Controller
     /**
      * Display the specified position competency.
      */
-    public function show(int $position_id, int $competency_id)
+    public function getSinglePositionCompetency(int $position_id, int $competency_id)
     {
         //
     }
@@ -31,7 +31,7 @@ class PositionCompetencyController extends Controller
     /**
      * Update the specified position competency in storage.
      */
-    public function update(int $position_id, int $competency_id)
+    public function updatePositionCompetency(int $position_id, int $competency_id)
     {
         //
     }
@@ -39,7 +39,7 @@ class PositionCompetencyController extends Controller
     /**
      * Remove the specified position competency from storage.
      */
-    public function destroy(int $position_id, int $competency_id)
+    public function deletePositionCompetency(int $position_id, int $competency_id)
     {
         //
     }

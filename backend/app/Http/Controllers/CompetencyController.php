@@ -9,7 +9,7 @@ class CompetencyController extends Controller
     /**
      * Display a listing of competency.
      */
-    public function index()
+    public function getCompetencies()
     {
         //
     }
@@ -17,7 +17,7 @@ class CompetencyController extends Controller
     /**
      * Store a newly created competency in storage.
      */
-    public function store()
+    public function createCompetency()
     {
         //
     }
@@ -25,7 +25,7 @@ class CompetencyController extends Controller
     /**
      * Display the specified competency.
      */
-    public function show(int $competency_id)
+    public function getSingleCompetency(int $competency_id)
     {
         //
     }
@@ -33,7 +33,7 @@ class CompetencyController extends Controller
     /**
      * Update the specified competency in storage.
      */
-    public function update(int $competency_id)
+    public function updateCompetency(int $competency_id)
     {
         //
     }
@@ -41,7 +41,7 @@ class CompetencyController extends Controller
     /**
      * Remove the specified competency from storage.
      */
-    public function destroy(int $competency_id)
+    public function deleteCompetency(int $competency_id)
     {
         //
     }

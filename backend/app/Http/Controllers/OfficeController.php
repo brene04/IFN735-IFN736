@@ -7,7 +7,7 @@ class OfficeController extends Controller
     /**
      * Display a listing of office.
      */
-    public function index()
+    public function getOffices()
     {
         //
     }
@@ -15,7 +15,7 @@ class OfficeController extends Controller
     /**
      * Store a newly created office in storage.
      */
-    public function store()
+    public function createOffice()
     {
         //
     }
@@ -23,7 +23,7 @@ class OfficeController extends Controller
     /**
      * Display the specified office.
      */
-    public function show(int $office_id)
+    public function getSingleOffice(int $office_id)
     {
         //
     }
@@ -31,7 +31,7 @@ class OfficeController extends Controller
     /**
      * Update the specified office in storage.
      */
-    public function update(int $office_id)
+    public function updateOffice(int $office_id)
     {
         //
     }
@@ -39,7 +39,7 @@ class OfficeController extends Controller
     /**
      * Remove the specified office from storage.
      */
-    public function destroy(int $office_id)
+    public function deleteOffice(int $office_id)
     {
         //
     }

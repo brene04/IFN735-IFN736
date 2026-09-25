@@ -17,7 +17,7 @@ class EmployeeController extends Controller
     /**
      * Display a listing of employee.
      */
-    public function index()
+    public function getEmployees()
     {
         //
     }
@@ -25,7 +25,7 @@ class EmployeeController extends Controller
     /**
      * Store a newly created employee in storage.
      */
-    public function store()
+    public function createEmployee()
     {
         //
     }
@@ -33,7 +33,7 @@ class EmployeeController extends Controller
     /**
      * Display the specified employee.
      */
-    public function show(int $employee_id)
+    public function getSingleEmployee(int $employee_id)
     {
         //
     }
@@ -41,7 +41,7 @@ class EmployeeController extends Controller
     /**
      * Update the specified employee in storage.
      */
-    public function update(int $employee_id)
+    public function updateEmployee(int $employee_id)
     {
         //
     }
@@ -49,7 +49,7 @@ class EmployeeController extends Controller
     /**
      * Remove the specified employee from storage.
      */
-    public function destroy(int $employee_id)
+    public function deleteEmployee(int $employee_id)
     {
         //
     }

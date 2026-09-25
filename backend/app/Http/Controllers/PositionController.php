@@ -7,7 +7,7 @@ class PositionController extends Controller
     /**
      * Display a listing of position.
      */
-    public function index()
+    public function getPositions()
     {
         //
     }
@@ -15,7 +15,7 @@ class PositionController extends Controller
     /**
      * Store a newly created position in storage.
      */
-    public function store()
+    public function createPosition()
     {
         //
     }
@@ -23,7 +23,7 @@ class PositionController extends Controller
     /**
      * Display the specified position.
      */
-    public function show(int $position_id)
+    public function getSinglePosition(int $position_id)
     {
         //
     }
@@ -31,7 +31,7 @@ class PositionController extends Controller
     /**
      * Update the specified position in storage.
      */
-    public function update(int $position_id)
+    public function updatePosition(int $position_id)
     {
         //
     }
@@ -39,7 +39,7 @@ class PositionController extends Controller
     /**
      * Remove the specified position from storage.
      */
-    public function destroy(int $position_id)
+    public function deletePosition(int $position_id)
     {
         //
     }

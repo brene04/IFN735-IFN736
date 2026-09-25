@@ -7,7 +7,7 @@ class RoleController extends Controller
     /**
      * Display a listing of role.
      */
-    public function index()
+    public function getRoles()
     {
         //
     }
@@ -15,7 +15,7 @@ class RoleController extends Controller
     /**
      * Store a newly created role in storage.
      */
-    public function store()
+    public function createRole()
     {
         //
     }
@@ -23,7 +23,7 @@ class RoleController extends Controller
     /**
      * Display the specified role.
      */
-    public function show(int $role_id)
+    public function getSingleRole(int $role_id)
     {
         //
     }
@@ -31,7 +31,7 @@ class RoleController extends Controller
     /**
      * Update the specified role in storage.
      */
-    public function update(int $role_id)
+    public function updateRole(int $role_id)
     {
         //
     }
@@ -39,7 +39,7 @@ class RoleController extends Controller
     /**
      * Remove the specified role from storage.
      */
-    public function destroy(int $role_id)
+    public function deleteRole(int $role_id)
     {
         //
     }
@@ -47,7 +47,7 @@ class RoleController extends Controller
     /**
      * Display the specified user's role.
      */
-    public function getUserRole(int $user_id)
+    public function getSingleUserRole(int $user_id)
     {
         //
     }

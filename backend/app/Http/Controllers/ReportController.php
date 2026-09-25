@@ -9,7 +9,7 @@ class ReportController extends Controller
     /**
      * Display a listing of report.
      */
-    public function index()
+    public function getReports()
     {
         //
     }
@@ -17,7 +17,7 @@ class ReportController extends Controller
     /**
      * Generate(export) and store a new report.
      */
-    public function store()
+    public function createReport()
     {
         //
     }
@@ -25,7 +25,7 @@ class ReportController extends Controller
     /**
      * Display the specified report.
      */
-    public function show(int $report_id)
+    public function getSingleReport(int $report_id)
     {
         //
     }
@@ -33,7 +33,7 @@ class ReportController extends Controller
     /**
      * Remove the specified report from storage.
      */
-    public function destroy(int $report_id)
+    public function deleteReport(int $report_id)
     {
         //
     }

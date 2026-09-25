@@ -7,7 +7,7 @@ class HistoricalRecordController extends Controller
     /**
      * Display a listing of historical record.
      */
-    public function index()
+    public function getHistoricalRecords()
     {
         //
     }
@@ -15,7 +15,7 @@ class HistoricalRecordController extends Controller
     /**
      * Store a newly created historical record in storage.
      */
-    public function store()
+    public function createHistoricalRecord()
     {
         //
     }
@@ -23,7 +23,7 @@ class HistoricalRecordController extends Controller
     /**
      * Display the specified historical record.
      */
-    public function show(int $historical_record_id)
+    public function getSingleHistoricalRecord(int $historical_record_id)
     {
         //
     }
@@ -31,7 +31,7 @@ class HistoricalRecordController extends Controller
     /**
      * Update the specified historical record in storage.
      */
-    public function update(int $historical_record_id)
+    public function updateHistoricalRecord(int $historical_record_id)
     {
         //
     }
@@ -39,7 +39,7 @@ class HistoricalRecordController extends Controller
     /**
      * Remove the specified historical record from storage.
      */
-    public function destroy(int $historical_record_id)
+    public function deleteHistoricalRecord(int $historical_record_id)
     {
         //
     }

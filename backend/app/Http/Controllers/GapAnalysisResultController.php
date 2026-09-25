@@ -7,7 +7,7 @@ class GapAnalysisResultController extends Controller
     /**
      * Display a listing of gap analysis result.
      */
-    public function index()
+    public function getGapAnalysisResults()
     {
         //
     }
@@ -15,7 +15,7 @@ class GapAnalysisResultController extends Controller
     /**
      * Store a newly created gap analysis result in storage.
      */
-    public function store()
+    public function createGapAnalysisResult()
     {
         //
     }
@@ -23,7 +23,7 @@ class GapAnalysisResultController extends Controller
     /**
      * Display the specified gap analysis result.
      */
-    public function show(int $gap_analysis_result_id)
+    public function getSingleGapAnalysisResult(int $gap_analysis_result_id)
     {
         //
     }
@@ -31,7 +31,7 @@ class GapAnalysisResultController extends Controller
     /**
      * Update the specified gap analysis result in storage.
      */
-    public function update(int $gap_analysis_result_id)
+    public function updateGapAnalysisResult(int $gap_analysis_result_id)
     {
         //
     }
@@ -39,7 +39,7 @@ class GapAnalysisResultController extends Controller
     /**
      * Remove the specified gap analysis result from storage.
      */
-    public function destroy(int $gap_analysis_result_id)
+    public function deleteGapAnalysisResult(int $gap_analysis_result_id)
     {
         //
     }
@@ -47,7 +47,7 @@ class GapAnalysisResultController extends Controller
     /**
      * Display a listing of gap analysis result for the specified employee.
      */
-    public function getGapResultByEmployee(int $employee_id)
+    public function getGapResultsByEmployee(int $employee_id)
     {
         //
     }
@@ -55,7 +55,7 @@ class GapAnalysisResultController extends Controller
     /**
      * Display a listing of gap analysis result for the specified unit.
      */
-    public function getGapResultByUnit(int $unit_id)
+    public function getGapResultsByUnit(int $unit_id)
     {
         //
     }

@@ -9,7 +9,7 @@ class GapAnalysisController extends Controller
     /**
      * Display a listing of gap analysis.
      */
-    public function index()
+    public function getGapAnalyses()
     {
         //
     }
@@ -17,7 +17,7 @@ class GapAnalysisController extends Controller
     /**
      * Store a newly created gap analysis in storage.
      */
-    public function store()
+    public function createGapAnalysis()
     {
         //
     }
@@ -25,7 +25,7 @@ class GapAnalysisController extends Controller
     /**
      * Display the specified gap analysis.
      */
-    public function show(int $gap_analysis_id)
+    public function getSingleGapAnalysis(int $gap_analysis_id)
     {
         //
     }
@@ -33,7 +33,7 @@ class GapAnalysisController extends Controller
     /**
      * Update the specified gap analysis in storage.
      */
-    public function update(int $gap_analysis_id)
+    public function updateGapAnalysis(int $gap_analysis_id)
     {
         //
     }
@@ -41,7 +41,7 @@ class GapAnalysisController extends Controller
     /**
      * Remove the specified gap analysis from storage.
      */
-    public function destroy(int $gap_analysis_id)
+    public function deleteGapAnalysis(int $gap_analysis_id)
     {
         //
     }

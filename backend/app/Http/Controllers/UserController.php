@@ -9,7 +9,7 @@ class UserController extends Controller
     /**
      * Display a listing of user.
      */
-    public function index()
+    public function getUsers()
     {
         //
     }
@@ -17,7 +17,7 @@ class UserController extends Controller
     /**
      * Store a newly created user in storage.
      */
-    public function store(Request $request)
+    public function createUser(Request $request)
     {
         //
     }
@@ -25,7 +25,7 @@ class UserController extends Controller
     /**
      * Display the specified user.
      */
-    public function show(int $user_id)
+    public function getSingleUser(int $user_id)
     {
         //
     }
@@ -33,7 +33,7 @@ class UserController extends Controller
     /**
      * Update the specified user in storage.
      */
-    public function update(Request $request, int $user_id)
+    public function updateUser(Request $request, int $user_id)
     {
         //
     }
@@ -41,7 +41,7 @@ class UserController extends Controller
     /**
      * Remove the specified user from storage.
      */
-    public function destroy(int $user_id)
+    public function deleteUser(int $user_id)
     {
         //
     }
