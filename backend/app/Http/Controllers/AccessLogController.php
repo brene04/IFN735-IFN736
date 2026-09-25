@@ -2,47 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 class AccessLogController extends Controller
 {
+
     /**
-     * Display a listing of the resource.
+     * Display a listing of AccessLog.
      */
-    public function index()
+    public function getAccessLogs()
     {
         //
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Display the specified AccessLog.
      */
-    public function store(Request $request)
+    public function getSingleAccessLog(int $access_log_id)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
 }

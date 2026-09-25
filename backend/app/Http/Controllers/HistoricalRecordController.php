@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 class HistoricalRecordController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of historical record.
      */
     public function index()
     {
@@ -15,33 +13,33 @@ class HistoricalRecordController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created historical record in storage.
      */
-    public function store(Request $request)
+    public function store()
     {
         //
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified historical record.
      */
-    public function show(string $id)
+    public function show(int $historical_record_id)
     {
         //
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified historical record in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(int $historical_record_id)
     {
         //
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified historical record from storage.
      */
-    public function destroy(string $id)
+    public function destroy(int $historical_record_id)
     {
         //
     }

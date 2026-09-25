@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tbl_roles', function (Blueprint $table) {
-            $table->unsignedInteger('role_id')->primary();
+            $table->increments('role_id'); //PK
             $table->string('role_name', 50);
             $table->text('description');
             $table->string('status', 20);

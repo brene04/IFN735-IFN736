@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class GapAnalysisController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of gap analysis.
      */
     public function index()
     {
@@ -15,33 +15,33 @@ class GapAnalysisController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created gap analysis in storage.
      */
-    public function store(Request $request)
+    public function store()
     {
         //
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified gap analysis.
      */
-    public function show(string $id)
+    public function show(int $gap_analysis_id)
     {
         //
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified gap analysis in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(int $gap_analysis_id)
     {
         //
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified gap analysis from storage.
      */
-    public function destroy(string $id)
+    public function destroy(int $gap_analysis_id)
     {
         //
     }

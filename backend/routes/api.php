@@ -46,9 +46,9 @@ Route::controller(RoleController::class)
         Route::delete('roles/{role_id}', 'destroy');
 
         // Managing user's role
-        Route::get('users/{user_id}/roles', 'getUserRoles');
-        Route::put('users/{user_id}/roles/{role_id}', 'updateUserRole');
-        Route::delete('users/{user_id}/roles/{role_id}', 'destroyUserRole');
+        Route::get('users/{user_id}/role', 'getUserRole');
+        Route::put('users/{user_id}/role', 'updateUserRole');
+        Route::delete('users/{user_id}/role', 'deleteUserRole');
 
    });
 
@@ -144,17 +144,17 @@ Route::controller(CompetencyController::class)
 
         // Managing competency categories
         Route::get('competency-categories', 'getCategories');
-        Route::post('competency-categories', 'storeCategory');
-        Route::get('competency-categories/{category_id}', 'showCategory');
+        Route::post('competency-categories', 'createCategory');
+        Route::get('competency-categories/{category_id}', 'getSingleCategory');
         Route::put('competency-categories/{category_id}', 'updateCategory');
-        Route::delete('competency-categories/{category_id}', 'destroyCategory');
+        Route::delete('competency-categories/{category_id}', 'deleteCategory');
 
         // Managing proficiency levels
         Route::get('proficiency-levels', 'getProficiencyLevels');
-        Route::post('proficiency-levels', 'storeProficiencyLevel');
-        Route::get('proficiency-levels/{level_id}', 'showProficiencyLevel');
+        Route::post('proficiency-levels', 'createProficiencyLevel');
+        Route::get('proficiency-levels/{level_id}', 'getSingleProficiencyLevel');
         Route::put('proficiency-levels/{level_id}', 'updateProficiencyLevel');
-        Route::delete('proficiency-levels/{level_id}', 'destroyProficiencyLevel');
+        Route::delete('proficiency-levels/{level_id}', 'deleteProficiencyLevel');
 
    });
 
@@ -172,7 +172,7 @@ Route::controller(PositionCompetencyController::class)
         Route::put('positions/{position_id}/competencies/{competency_id}', 'update');
         Route::delete('positions/{position_id}/competencies/{competency_id}', 'destroy');
 
-        // Position Competencies by Unit
+        // Position Competencies by unit
         Route::get('units/{unit_id}/positions/competencies', 'getCompetenciesByUnit');
    });
 
@@ -251,7 +251,7 @@ Route::controller(DashboardController::class)
     ->group(function () {
 
         // Managing dashboard
-        Route::get('dashboard', 'getDashboard');
+        Route::get('dashboard', 'displayDashboard');
    });
 
 // ======================
@@ -265,15 +265,10 @@ Route::controller(ReportController::class)
         Route::get('reports', 'index');
         Route::post('reports', 'store');
         Route::get('reports/{report_id}', 'show');
-        Route::put('reports/{report_id}', 'update');
         Route::delete('reports/{report_id}', 'destroy');
 
-        // Exporting report 
-        Route::post('reports/{report_id}/export', 'exportReport');
-
-        // Managing exported reports
-        Route::get('exported-reports', 'getExportedReport');
-        Route::get('exported-reports/{export_id}/download', 'downloadReport');
+        // Downloading report 
+        Route::get('reports/{report_id}/download', 'downloadReport');
 
 
    });
@@ -287,4 +282,5 @@ Route::controller(AccessLogController::class)
 
         // Managing access-logs
         Route::get('access-logs', 'getAccessLogs');
+        Route::get('access-logs/{access_log_id}', 'getSingleAccessLog');
    });

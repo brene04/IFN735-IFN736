@@ -7,7 +7,15 @@ use Illuminate\Http\Request;
 class EmployeeController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Store bulk-imported employees in storage.
+     */
+    public function importEmployees()
+    {
+        //
+    }
+
+    /**
+     * Display a listing of employee.
      */
     public function index()
     {
@@ -15,33 +23,33 @@ class EmployeeController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created employee in storage.
      */
-    public function store(Request $request)
+    public function store()
     {
         //
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified employee.
      */
-    public function show(string $id)
+    public function show(int $employee_id)
     {
         //
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified employee in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(int $employee_id)
     {
         //
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified employee from storage.
      */
-    public function destroy(string $id)
+    public function destroy(int $employee_id)
     {
         //
     }

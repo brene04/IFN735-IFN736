@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 class RoleController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of role.
      */
     public function index()
     {
@@ -15,33 +13,57 @@ class RoleController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created role in storage.
      */
-    public function store(Request $request)
+    public function store()
     {
         //
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified role.
      */
-    public function show(string $id)
+    public function show(int $role_id)
     {
         //
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified role in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(int $role_id)
     {
         //
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified role from storage.
      */
-    public function destroy(string $id)
+    public function destroy(int $role_id)
+    {
+        //
+    }
+
+    /**
+     * Display the specified user's role.
+     */
+    public function getUserRole(int $user_id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified user's role in storage.
+     */
+    public function updateUserRole(int $user_id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified user's role from storage.
+     */
+    public function deleteUserRole(int $user_id)
     {
         //
     }

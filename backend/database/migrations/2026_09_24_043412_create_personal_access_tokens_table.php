@@ -7,7 +7,9 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
-     * Run the migrations.
+     * This table is provided by Laravel Sanctum for API token authentication.
+     * The current SPA uses Sanctum session/cookie authentication,
+     * so this table is not currently used.
      */
     public function up(): void
     {

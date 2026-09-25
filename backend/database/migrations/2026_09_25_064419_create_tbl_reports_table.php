@@ -11,14 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tbl_positions', function (Blueprint $table) {
-            $table->increments('position_id'); //PK
-            $table->string('position_code', 50);
-            $table->string('position_title', 100);
-            $table->text('description');
-            $table->string('department', 100);
-            $table->string('employment_type', 50);
-            $table->string('status', 20);
+        Schema::create('tbl_reports', function (Blueprint $table) {
+            $table->increments('report_id'); //PK
+            $table->string('report_name');
+            $table->string('file_path');
+            $table->string('file_format');
+            $table->unsignedInteger('exported_by');
+            $table->foreign('exported_by')->references('user_id')->on('tbl_users');
             $table->dateTime('created_at');
             $table->dateTime('updated_at');
         });
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tbl_positions');
+        Schema::dropIfExists('tbl_reports');
     }
 };

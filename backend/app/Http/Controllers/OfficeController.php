@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 class OfficeController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of office.
      */
     public function index()
     {
@@ -15,33 +13,33 @@ class OfficeController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created office in storage.
      */
-    public function store(Request $request)
+    public function store()
     {
         //
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified office.
      */
-    public function show(string $id)
+    public function show(int $office_id)
     {
         //
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified office in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(int $office_id)
     {
         //
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified office from storage.
      */
-    public function destroy(string $id)
+    public function destroy(int $office_id)
     {
         //
     }

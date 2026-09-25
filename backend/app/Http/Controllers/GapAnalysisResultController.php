@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 class GapAnalysisResultController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of gap analysis result.
      */
     public function index()
     {
@@ -15,33 +13,49 @@ class GapAnalysisResultController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created gap analysis result in storage.
      */
-    public function store(Request $request)
+    public function store()
     {
         //
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified gap analysis result.
      */
-    public function show(string $id)
+    public function show(int $gap_analysis_result_id)
     {
         //
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified gap analysis result in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(int $gap_analysis_result_id)
     {
         //
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified gap analysis result from storage.
      */
-    public function destroy(string $id)
+    public function destroy(int $gap_analysis_result_id)
+    {
+        //
+    }
+
+    /**
+     * Display a listing of gap analysis result for the specified employee.
+     */
+    public function getGapResultByEmployee(int $employee_id)
+    {
+        //
+    }
+
+    /**
+     * Display a listing of gap analysis result for the specified unit.
+     */
+    public function getGapResultByUnit(int $unit_id)
     {
         //
     }

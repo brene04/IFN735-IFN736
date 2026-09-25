@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tbl_users', function (Blueprint $table) {
-            $table->unsignedInteger('user_id')->primary();
+            $table->increments('user_id'); //PK
             $table->unsignedInteger('role_id');
             $table->foreign('role_id')->references('role_id')->on('tbl_roles');
             $table->unsignedInteger('employee_id');

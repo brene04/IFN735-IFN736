@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tbl_historical_records', function (Blueprint $table) {
-            $table->unsignedInteger('record_id')->primary(); 
+            $table->increments('record_id'); //PK
             $table->unsignedInteger('employee_id');
             $table->foreign('employee_id')->references('employee_id')->on('tbl_employees');
             $table->string('record_type', 50);
