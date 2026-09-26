@@ -1,6 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Requests\CreateCompetencyRequest;
+use App\Http\Requests\UpdateCompetencyRequest;
+use App\Http\Requests\CreateCategoryRequest;
+use App\Http\Requests\UpdateCategoryRequest;
+use App\Http\Requests\CreateProficiencyLevelRequest;
+use App\Http\Requests\UpdateProficiencyLevelRequest;
 
 use Illuminate\Http\Request;
 
@@ -17,8 +23,9 @@ class CompetencyController extends Controller
     /**
      * Store a newly created competency in storage.
      */
-    public function createCompetency()
+    public function createCompetency(CreateCompetencyRequest $request)
     {
+        $validated = $request->validated();
         //
     }
 
@@ -33,8 +40,9 @@ class CompetencyController extends Controller
     /**
      * Update the specified competency in storage.
      */
-    public function updateCompetency(int $competency_id)
+    public function updateCompetency(UpdateCompetencyRequest $request, int $competency_id)
     {
+        $validated = $request->validated();
         //
     }
 
@@ -57,15 +65,16 @@ class CompetencyController extends Controller
     /**
      * Store a newly created competency category in storage.
      */
-    public function createCategory()
+    public function createCategory(CreateCategoryRequest $request)
     {
+        $validated = $request->validated();
         //
     }
 
     /**
      * Display the specified competency category.
      */
-    public function getSingleCategory(int $category_id)
+    public function getSingleCategory(int $competency_category_id)
     {
         //
     }
@@ -73,15 +82,16 @@ class CompetencyController extends Controller
     /**
      * Update the specified competency category in storage.
      */
-    public function updateCategory(int $category_id)
+    public function updateCategory(UpdateCategoryRequest $request, int $competency_category_id)
     {
+        $validated = $request->validated();
         //
     }
 
     /**
      * Remove the specified competency category from storage.
      */
-    public function deleteCategory(int $category_id)
+    public function deleteCategory(int $competency_category_id)
     {
         //
     }
@@ -97,8 +107,9 @@ class CompetencyController extends Controller
     /**
      * Store a newly created proficiency level in storage.
      */
-    public function createProficiencyLevel()
+    public function createProficiencyLevel(CreateProficiencyLevelRequest $request)
     {
+        $validated = $request->validated();
         //
     }
 
@@ -113,8 +124,9 @@ class CompetencyController extends Controller
     /**
      * Update the specified proficiency level in storage.
      */
-    public function updateProficiencyLevel(int $level_id)
+    public function updateProficiencyLevel(UpdateProficiencyLevelRequest $request, int $level_id)
     {
+        $validated = $request->validated();
         //
     }
 

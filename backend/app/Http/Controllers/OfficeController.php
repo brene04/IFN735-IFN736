@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Requests\CreateOfficeRequest;
+use App\Http\Requests\UpdateOfficeRoleRequest;
 
 class OfficeController extends Controller
 {
@@ -15,8 +17,9 @@ class OfficeController extends Controller
     /**
      * Store a newly created office in storage.
      */
-    public function createOffice()
+    public function createOffice(CreateOfficeRequest $request)
     {
+        $validated = $request->validated();
         //
     }
 
@@ -31,8 +34,9 @@ class OfficeController extends Controller
     /**
      * Update the specified office in storage.
      */
-    public function updateOffice(int $office_id)
+    public function updateOffice(UpdateOfficeRequest $request, int $office_id)
     {
+        $validated = $request->validated();
         //
     }
 

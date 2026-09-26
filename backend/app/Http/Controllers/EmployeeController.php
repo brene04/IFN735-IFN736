@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
+use App\Http\Requests\CreateEmployeeRequest;
+use App\Http\Requests\UpdateEmployeeRequest;
 
 class EmployeeController extends Controller
 {
@@ -11,6 +11,7 @@ class EmployeeController extends Controller
      */
     public function importEmployees()
     {
+        // $validated = $request->validated(); **NOT YET**
         //
     }
 
@@ -25,8 +26,9 @@ class EmployeeController extends Controller
     /**
      * Store a newly created employee in storage.
      */
-    public function createEmployee()
+    public function createEmployee(CreateEmployeeRequest $request)
     {
+        $validated = $request->validated();
         //
     }
 
@@ -41,8 +43,9 @@ class EmployeeController extends Controller
     /**
      * Update the specified employee in storage.
      */
-    public function updateEmployee(int $employee_id)
+    public function updateEmployee(UpdateEmployeeRequest $request, int $employee_id)
     {
+        $validated = $request->validated();
         //
     }
 

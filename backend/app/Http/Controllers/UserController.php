@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
+use App\Http\Requests\CreateUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 
 class UserController extends Controller
 {
@@ -17,8 +17,9 @@ class UserController extends Controller
     /**
      * Store a newly created user in storage.
      */
-    public function createUser(Request $request)
+    public function createUser(CreateUserRequest $request)
     {
+        $validated = $request->validated();
         //
     }
 
@@ -33,8 +34,9 @@ class UserController extends Controller
     /**
      * Update the specified user in storage.
      */
-    public function updateUser(Request $request, int $user_id)
+    public function updateUser(UpdateUserRequest $request, int $user_id)
     {
+        $validated = $request->validated();
         //
     }
 

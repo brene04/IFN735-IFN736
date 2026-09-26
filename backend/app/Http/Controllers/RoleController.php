@@ -1,6 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Requests\CreateRoleRequest;
+use App\Http\Requests\UpdateRoleRequest;
+use App\Http\Requests\UpdateUserRoleRequest;
 
 class RoleController extends Controller
 {
@@ -15,8 +18,9 @@ class RoleController extends Controller
     /**
      * Store a newly created role in storage.
      */
-    public function createRole()
+    public function createRole(CreateRoleRequest $request)
     {
+        $validated = $request->validated();
         //
     }
 
@@ -31,8 +35,9 @@ class RoleController extends Controller
     /**
      * Update the specified role in storage.
      */
-    public function updateRole(int $role_id)
+    public function updateRole(UpdateRoleRequest $request, int $role_id)
     {
+        $validated = $request->validated();
         //
     }
 
@@ -55,8 +60,9 @@ class RoleController extends Controller
     /**
      * Update the specified user's role in storage.
      */
-    public function updateUserRole(int $user_id)
+    public function updateUserRole(UpdateUserRoleRequest $request, int $user_id)
     {
+        $validated = $request->validated();
         //
     }
 

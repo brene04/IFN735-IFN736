@@ -1,6 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Requests\CreatePositionRequest;
+use App\Http\Requests\UpdatePositionRequest;
+use App\Http\Requests\UpdateEmployeePositionRequest;
 
 class PositionController extends Controller
 {
@@ -15,8 +18,9 @@ class PositionController extends Controller
     /**
      * Store a newly created position in storage.
      */
-    public function createPosition()
+    public function createPosition(CreatePositionRequest $request)
     {
+        $validated = $request->validated();        
         //
     }
 
@@ -31,8 +35,9 @@ class PositionController extends Controller
     /**
      * Update the specified position in storage.
      */
-    public function updatePosition(int $position_id)
+    public function updatePosition(UpdatePositionRequest $request, int $position_id)
     {
+        $validated = $request->validated();
         //
     }
 
@@ -40,23 +45,6 @@ class PositionController extends Controller
      * Remove the specified position from storage.
      */
     public function deletePosition(int $position_id)
-    {
-        //
-    }
-
-
-    /**
-     * Display the specified employee's assigned positions.
-     */
-    public function getEmployeePositions(int $employee_id)
-    {
-        //
-    }
-
-    /**
-     * Store a newly assigned position for the specified employee.
-     */
-    public function createEmployeePosition(int $employee_id)
     {
         //
     }
@@ -72,8 +60,9 @@ class PositionController extends Controller
     /**
      * Update the specified position assigned to the employee.
      */
-    public function updateEmployeePosition(int $employee_id, int $position_id)
+    public function updateEmployeePosition(UpdateEmployeePositionRequest $request, int $employee_id, int $position_id)
     {
+        $validated = $request->validated();
         //
     }
 
