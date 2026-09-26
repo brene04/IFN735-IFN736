@@ -11,14 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tbl_competencies', function (Blueprint $table) {
-            $table->increments('competency_id'); //PK
-            $table->string('competency_code', 50);
-            $table->string('competency_name', 100);
-            $table->unsignedInteger('competency_category_id'); 
-            $table->foreign('competency_category_id')->references('competency_category_id')->on('tbl_competency_categories');
+        Schema::create('tbl_competency_categories', function (Blueprint $table) {
+            $table->increments('competency_category_id'); //PK
+            $table->string('competency_category_code', 50);
+            $table->string('competency_category_name', 100);
             $table->text('description');
-            $table->string('competency_type', 50);
             $table->string('status', 20);
             $table->dateTime('created_at');
             $table->dateTime('updated_at');
@@ -30,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tbl_competencies');
+        Schema::dropIfExists('tbl_competency_categories');
     }
 };

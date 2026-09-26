@@ -121,11 +121,9 @@ Route::controller(PositionController::class)
         Route::delete('positions/{position_id}', 'deletePosition');
 
         // Managing employee's assigned position
-        Route::get('employees/{employee_id}/positions', 'getEmployeePositions');
-        Route::post('employees/{employee_id}/positions', 'createEmployeePosition');
-        Route::get('employees/{employee_id}/positions/{position_id}', 'getSingleEmployeePosition');
-        Route::put('employees/{employee_id}/positions/{position_id}', 'updateEmployeePosition');
-        Route::delete('employees/{employee_id}/positions/{position_id}', 'deleteEmployeePosition');
+        Route::get('employees/{employee_id}/position', 'getSingleEmployeePosition');
+        Route::put('employees/{employee_id}/position', 'updateEmployeePosition');
+        Route::delete('employees/{employee_id}/position', 'deleteEmployeePosition');
    });
 
 // ======================
@@ -145,9 +143,9 @@ Route::controller(CompetencyController::class)
         // Managing competency categories
         Route::get('competency-categories', 'getCategories');
         Route::post('competency-categories', 'createCategory');
-        Route::get('competency-categories/{category_id}', 'getSingleCategory');
-        Route::put('competency-categories/{category_id}', 'updateCategory');
-        Route::delete('competency-categories/{category_id}', 'deleteCategory');
+        Route::get('competency-categories/{competency_category_id}', 'getSingleCategory');
+        Route::put('competency-categories/{competency_category_id}', 'updateCategory');
+        Route::delete('competency-categories/{competency_category_id}', 'deleteCategory');
 
         // Managing proficiency levels
         Route::get('proficiency-levels', 'getProficiencyLevels');
