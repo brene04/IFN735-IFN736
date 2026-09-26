@@ -148,11 +148,11 @@ Route::controller(CompetencyController::class)
         Route::delete('competency-categories/{competency_category_id}', 'deleteCategory');
 
         // Managing proficiency levels
-        Route::get('proficiency-levels', 'getProficiencyLevels');
-        Route::post('proficiency-levels', 'createProficiencyLevel');
-        Route::get('proficiency-levels/{level_id}', 'getSingleProficiencyLevel');
-        Route::put('proficiency-levels/{level_id}', 'updateProficiencyLevel');
-        Route::delete('proficiency-levels/{level_id}', 'deleteProficiencyLevel');
+        Route::get('competencies/{competency_id}/proficiency-levels', 'getProficiencyLevels');
+        Route::post('competencies/{competency_id}/proficiency-levels', 'createProficiencyLevel');
+        Route::get('competencies/{competency_id}/proficiency-levels/{proficiency_level_id}', 'getSingleProficiencyLevel');
+        Route::put('competencies/{competency_id}/proficiency-levels/{proficiency_level_id}', 'updateProficiencyLevel');
+        Route::delete('competencies/{competency_id}/proficiency-levels/{proficiency_level_id}', 'deleteProficiencyLevel');
 
    });
 
