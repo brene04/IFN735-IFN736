@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Requests\CreateEmployeeCompetencyRequest;
+use App\Http\Requests\UpdateEmployeeCompetencyRequest;
 
 class EmployeeCompetencyController extends Controller
 {
@@ -15,15 +17,16 @@ class EmployeeCompetencyController extends Controller
     /**
      * Store a newly created employee competency in storage.
      */
-    public function createEmployeeCompetency(int $employee_id)
+    public function createEmployeeCompetency(CreateEmployeeCompetencyRequest $request, int $employee_id)
     {
+        $validated = $request->validated();
         //
     }
 
     /**
      * Display the specified employee competency.
      */
-    public function getSingleEmployeeCompetency(int $employee_id, int $employee_competency_id)
+    public function getSingleEmployeeCompetency(int $employee_id, int $competency_id)
     {
         //
     }
@@ -31,15 +34,16 @@ class EmployeeCompetencyController extends Controller
     /**
      * Update the specified employee competency in storage.
      */
-    public function updateEmployeeCompetency(int $employee_id, int $employee_competency_id)
+    public function updateEmployeeCompetency(UpdateEmployeeCompetencyRequest $request, int $employee_id, int $competency_id)
     {
+        $validated = $request->validated();
         //
     }
 
     /**
      * Remove the specified employee competency from storage.
      */
-    public function deleteEmployeeCompetency(int $employee_id, int $employee_competency_id)
+    public function deleteEmployeeCompetency(int $employee_id, int $competency_id)
     {
         //
     }

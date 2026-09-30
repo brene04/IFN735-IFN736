@@ -182,11 +182,11 @@ Route::controller(EmployeeCompetencyController::class)
     ->group(function () {
 
        // Employee competency CRUD
-        Route::get('employees/{employee_id}/employee-competencies', 'getEmployeeCompetencies');
-        Route::post('employees/{employee_id}/employee-competencies', 'createEmployeeCompetency');
-        Route::get('employees/{employee_id}/employee-competencies/{employee_competency_id}', 'getSingleEmployeeCompetency');
-        Route::put('employees/{employee_id}/employee-competencies/{employee_competency_id}', 'updateEmployeeCompetency');
-        Route::delete('employees/{employee_id}/employee-competencies/{employee_competency_id}', 'deleteEmployeeCompetency');
+        Route::get('employees/{employee_id}/competencies', 'getEmployeeCompetencies');
+        Route::post('employees/{employee_id}/competencies', 'createEmployeeCompetency');
+        Route::get('employees/{employee_id}/competencies/{competency_id}', 'getSingleEmployeeCompetency');
+        Route::put('employees/{employee_id}/competencies/{competency_id}', 'updateEmployeeCompetency');
+        Route::delete('employees/{employee_id}/competencies/{competency_id}', 'deleteEmployeeCompetency');
 
    });
 

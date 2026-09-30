@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Requests\CreateHistoricalRecordsRequest;
+use App\Http\Requests\UpdateHistoricalRecordsRequest;
 
 class HistoricalRecordController extends Controller
 {
@@ -15,8 +17,9 @@ class HistoricalRecordController extends Controller
     /**
      * Store a newly created historical record in storage.
      */
-    public function createHistoricalRecord()
+    public function createHistoricalRecord(CreateHistoricalRecordsRequest $request)
     {
+        $validated = $request->validated(); 
         //
     }
 
@@ -31,8 +34,9 @@ class HistoricalRecordController extends Controller
     /**
      * Update the specified historical record in storage.
      */
-    public function updateHistoricalRecord(int $historical_record_id)
+    public function updateHistoricalRecord(UpdateHistoricalRecordsRequest $request, int $historical_record_id)
     {
+        $validated = $request->validated(); 
         //
     }
 

@@ -6,7 +6,7 @@ use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class CreateProficiencyLevelRequest extends FormRequest
+class UpdateEmployeeCompetencyRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -18,15 +18,14 @@ class CreateProficiencyLevelRequest extends FormRequest
 
     /**
      * Merge the route parameter into the request data before validation.
-     */    
+     */
     protected function prepareForValidation(): void
     {
         $this->merge([
+            'employee_id' => $this->route('employee_id'),
             'competency_id' => $this->route('competency_id'),
         ]);
     }
-
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -35,51 +34,28 @@ class CreateProficiencyLevelRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'employee_id' => [
+                'required',
+                'integer',
+                'exists:tbl_employees,employee_id',
+            ],
             'competency_id' => [
                 'required', 
                 'integer',
                 'exists:tbl_competencies,competency_id',
             ],
-            'level_number' => [
+            'current_level' => [
                 'required',
                 'integer',
                 Rule::in([1, 2, 3, 4]),
-                Rule::unique('tbl_proficiency_levels', 'level_number')
-                    ->where(
-                        fn ($query) =>
-                            $query->where(
-                                'competency_id',
-                                $this->route('competency_id')
-                            )
-                    )
             ],
-            'description' => [
-                'required',
+            'evidence' => [
+                'nullable', 
                 'string',
             ],
             'status' => [
-                'required',
-                'string',
-                'max:20',
-            ],
-            'behavioral_indicators' => [
-                'required',
-                'array',
-                'min:1',
-            ],
-            'behavioral_indicators.*.indicator_code' => [
-                'required',
-                'string',
-                'max:10',
-                'distinct',
-            ],
-            'behavioral_indicators.*.description' => [
-                'required',
-                'string',
-            ],
-            'behavioral_indicators.*.status' => [
-                'required',
-                'string',
+                'required', 
+                'string', 
                 'max:20',
             ],
         ];

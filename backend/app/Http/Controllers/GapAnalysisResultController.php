@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Requests\CreateGapAnalysisResultsRequest;
+use App\Http\Requests\UpdateGapAnalysisResultsRequest;
 
 class GapAnalysisResultController extends Controller
 {
@@ -15,8 +17,9 @@ class GapAnalysisResultController extends Controller
     /**
      * Store a newly created gap analysis result in storage.
      */
-    public function createGapAnalysisResult()
+    public function createGapAnalysisResult(CreateGapAnalysisResultsRequest $request)
     {
+        $validated = $request->validated(); 
         //
     }
 
@@ -31,8 +34,9 @@ class GapAnalysisResultController extends Controller
     /**
      * Update the specified gap analysis result in storage.
      */
-    public function updateGapAnalysisResult(int $gap_analysis_result_id)
+    public function updateGapAnalysisResult(UpdateGapAnalysisResultsRequest $request, int $gap_analysis_result_id)
     {
+        $validated = $request->validated(); 
         //
     }
 

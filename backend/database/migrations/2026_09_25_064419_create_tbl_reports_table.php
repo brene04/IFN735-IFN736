@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('tbl_reports', function (Blueprint $table) {
             $table->increments('report_id'); //PK
-            $table->string('report_name');
-            $table->string('file_path');
-            $table->string('file_format');
+            $table->string('report_name', 100);
+            $table->string('file_path', 255);
+            $table->string('file_format', 10);
             $table->unsignedInteger('exported_by');
             $table->foreign('exported_by')->references('user_id')->on('tbl_users');
             $table->dateTime('created_at');

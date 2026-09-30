@@ -13,7 +13,17 @@ class UpdateProficiencyLevelRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
+    }
+
+    /**
+     * Merge the route parameter into the request data before validation.
+     */    
+    protected function prepareForValidation(): void
+    {
+        $this->merge([
+            'competency_id' => $this->route('competency_id'),
+        ]);
     }
 
     /**
@@ -24,6 +34,11 @@ class UpdateProficiencyLevelRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'competency_id' => [
+                'required', 
+                'integer',
+                'exists:tbl_competencies,competency_id',
+            ],
             'level_number' => [
                 'required',
                 'integer',
@@ -36,6 +51,10 @@ class UpdateProficiencyLevelRequest extends FormRequest
                                 $this->route('competency_id')
                             )
                     )
+                    ->ignore(
+                        $this->route('proficiency_level_id'),
+                        'proficiency_level_id'
+                    ),
             ],
             'description' => [
                 'required',

@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Requests\CreatePositionCompetencyRequest;
+use App\Http\Requests\UpdatePositionCompetencyRequest;
 
 class PositionCompetencyController extends Controller
 {
@@ -15,8 +17,9 @@ class PositionCompetencyController extends Controller
     /**
      * Store a newly created position competency in storage.
      */
-    public function createPositionCompetency(int $position_id)
+    public function createPositionCompetency(CreatePositionCompetencyRequest $request, int $position_id)
     {
+        $validated = $request->validated();
         //
     }
 
@@ -31,8 +34,9 @@ class PositionCompetencyController extends Controller
     /**
      * Update the specified position competency in storage.
      */
-    public function updatePositionCompetency(int $position_id, int $competency_id)
+    public function updatePositionCompetency(UpdatePositionCompetencyRequest $request, int $position_id, int $competency_id)
     {
+        $validated = $request->validated();
         //
     }
 

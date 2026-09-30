@@ -8,8 +8,6 @@ use App\Http\Requests\UpdateCategoryRequest;
 use App\Http\Requests\CreateProficiencyLevelRequest;
 use App\Http\Requests\UpdateProficiencyLevelRequest;
 
-use Illuminate\Http\Request;
-
 class CompetencyController extends Controller
 {
     /**
