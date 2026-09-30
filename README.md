@@ -29,6 +29,44 @@ The system is being developed iteratively in consultation with the DOST client a
 
 ---
 
+## Backend Setup
+The backend is built with Laravel.
+
+### Requirements
+- PHP 8.5
+- Composer
+
+### Setup
+1. Navigate to the backend directory:
+
+        cd backend
+
+2. Install the required dependencies:
+
+        composer install
+
+3. Create and update the environment file:
+
+    (For Windows PowerShell)
+        
+        Copy-Item .env.example .env
+
+    (For macOS/Linux)
+        
+        cp .env.example .env
+
+    Update the `.env` file with your local environment settings if required.
+
+4. Generate the application key:
+
+        php artisan key:generate
+
+5. Start the Laravel development server:
+
+        php artisan serve
+
+---
+
 ## Repository Structure
 
 ```text
