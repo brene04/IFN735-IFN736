@@ -1,0 +1,93 @@
+<mxfile host="Electron" agent="ChatGPT">
+  <diagram id="cbhrms-phase1" name="CB-HRMS Phase 1 Final ERD">
+    <mxGraphModel dx="4433" dy="1484" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2200" pageHeight="1400" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="sxnNyYqn7om9t6LrkCI5-9" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" value="" vertex="1">
+          <mxGeometry height="320" width="840" x="-140" y="670" as="geometry" />
+        </mxCell>
+        <mxCell id="sxnNyYqn7om9t6LrkCI5-8" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" value="" vertex="1">
+          <mxGeometry height="300" width="460" x="740" y="700" as="geometry" />
+        </mxCell>
+        <mxCell id="sxnNyYqn7om9t6LrkCI5-7" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" value="" vertex="1">
+          <mxGeometry height="860" width="880" x="1250" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="sxnNyYqn7om9t6LrkCI5-5" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="" vertex="1">
+          <mxGeometry height="527" width="760" x="360" y="128" as="geometry" />
+        </mxCell>
+        <mxCell id="sxnNyYqn7om9t6LrkCI5-1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="" vertex="1">
+          <mxGeometry height="390" width="740" x="-430" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="title" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontSize=22;fontStyle=1;align=center;verticalAlign=middle;" value="CB-HRMS Phase 1 Final Database Entity Relationship Diagram" vertex="1">
+          <mxGeometry height="45" width="2100" x="40" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontSize=12;align=center;verticalAlign=middle;fontColor=#555555;" value="Final reconciled ERD — aligned to the current Phase 1 MySQL schema. Training, IDP, assessment and succession modules are outside Phase 1." vertex="1">
+          <mxGeometry height="35" width="2100" x="40" y="65" as="geometry" />
+        </mxCell>
+        <mxCell id="roles" parent="1" style="rounded=0;whiteSpace=wrap;html=0;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fillColor=#ffffff;strokeColor=#666666;fontSize=12;" value="tbl_roles&#xa;PK role_id : int(10)&#xa;role_name : varchar(50)&#xa;description : text&#xa;status : varchar(20)&#xa;created_at : datetime&#xa;updated_at : datetime" vertex="1">
+          <mxGeometry height="190" width="300" x="-400" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="users" parent="1" style="rounded=0;whiteSpace=wrap;html=0;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fillColor=#ffffff;strokeColor=#666666;fontSize=12;" value="tbl_users&#xa;PK user_id : int(10)&#xa;FK role_id : int(10)&#xa;FK employee_id : int(10)&#xa;username : varchar(50)&#xa;email : varchar(100)&#xa;password_hash : varchar(255)&#xa;status : varchar(20)&#xa;last_login : datetime&#xa;created_at : datetime&#xa;updated_at : datetime" vertex="1">
+          <mxGeometry height="260" width="300" x="-30" y="195" as="geometry" />
+        </mxCell>
+        <mxCell id="employees" parent="1" style="rounded=0;whiteSpace=wrap;html=0;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fillColor=#ffffff;strokeColor=#666666;fontSize=12;" value="tbl_employees&#xa;PK employee_id : int(10)&#xa;FK position_id : int(10)&#xa;FK office_id : int(10)&#xa;employee_no : varchar(50)&#xa;first_name : varchar(50)&#xa;middle_name : varchar(50)&#xa;last_name : varchar(50)&#xa;email : varchar(100)&#xa;phone : varchar(20)&#xa;date_hired : date&#xa;status : varchar(20)&#xa;created_at : datetime&#xa;updated_at : datetime" vertex="1">
+          <mxGeometry height="260" width="330" x="390" y="145" as="geometry" />
+        </mxCell>
+        <mxCell id="positions" parent="1" style="rounded=0;whiteSpace=wrap;html=0;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fillColor=#ffffff;strokeColor=#666666;fontSize=12;" value="tbl_positions&#xa;PK position_id : int(10)&#xa;position_code : varchar(50)&#xa;position_title : varchar(100)&#xa;description : text&#xa;department : varchar(100)&#xa;employment_type : varchar(50)&#xa;status : varchar(20)&#xa;created_at : datetime&#xa;updated_at : datetime" vertex="1">
+          <mxGeometry height="240" width="330" x="780" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="categories" parent="1" style="rounded=0;whiteSpace=wrap;html=0;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fillColor=#ffffff;strokeColor=#666666;fontSize=12;" value="tbl_competency_categories&#xa;PK category_id : int(10)&#xa;category_code : varchar(50)&#xa;category_name : varchar(100)&#xa;description : text&#xa;status : varchar(20)&#xa;created_at : datetime&#xa;updated_at : datetime" vertex="1">
+          <mxGeometry height="210" width="340" x="1760" y="425" as="geometry" />
+        </mxCell>
+        <mxCell id="competencies" parent="1" style="rounded=0;whiteSpace=wrap;html=0;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fillColor=#ffffff;strokeColor=#666666;fontSize=12;" value="tbl_competencies&#xa;PK competency_id : int(10)&#xa;FK category_id : int(10)&#xa;competency_code : varchar(50)&#xa;competency_name : varchar(100)&#xa;description : text&#xa;competency_type : varchar(50)&#xa;status : varchar(20)&#xa;created_at : datetime&#xa;updated_at : datetime" vertex="1">
+          <mxGeometry height="240" width="340" x="1760" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="levels" parent="1" style="rounded=0;whiteSpace=wrap;html=0;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fillColor=#ffffff;strokeColor=#666666;fontSize=12;" value="tbl_proficiency_levels&#xa;PK proficiency_level_id : int(10)&#xa;level_number : int(3)&#xa;level_name : varchar(50)&#xa;description : text&#xa;status : varchar(20)&#xa;created_at : datetime&#xa;updated_at : datetime" vertex="1">
+          <mxGeometry height="210" width="300" x="1780" y="720" as="geometry" />
+        </mxCell>
+        <mxCell id="position_comp" parent="1" style="rounded=0;whiteSpace=wrap;html=0;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fillColor=#ffffff;strokeColor=#666666;fontSize=12;" value="tbl_position_competencies&#xa;PK position_competency_id : int(10)&#xa;FK position_id : int(10)&#xa;FK competency_id : int(10)&#xa;required_level : int(3)&#xa;priority : int(3)&#xa;created_at : datetime&#xa;updated_at : datetime" vertex="1">
+          <mxGeometry height="220" width="330" x="1270" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="employee_comp" parent="1" style="rounded=0;whiteSpace=wrap;html=0;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fillColor=#ffffff;strokeColor=#666666;fontSize=12;" value="tbl_employee_competencies&#xa;PK employee_competency_id : int(10)&#xa;FK employee_id : int(10)&#xa;FK competency_id : int(10)&#xa;current_level : int(3)&#xa;evidence : text&#xa;last_updated : date&#xa;status : varchar(20)&#xa;created_at : datetime&#xa;updated_at : datetime" vertex="1">
+          <mxGeometry height="250" width="340" x="1270" y="405" as="geometry" />
+        </mxCell>
+        <mxCell id="gap" parent="1" style="rounded=0;whiteSpace=wrap;html=0;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fillColor=#ffffff;strokeColor=#666666;fontSize=12;" value="tbl_gap_analyses&#xa;PK gap_analysis_id : int(10)&#xa;FK employee_id : int(10)&#xa;FK position_id : int(10)&#xa;analysis_date : date&#xa;status : varchar(20)&#xa;remarks : text&#xa;FK created_by : int(10)&#xa;created_at : datetime&#xa;updated_at : datetime" vertex="1">
+          <mxGeometry height="250" width="330" x="-100" y="695" as="geometry" />
+        </mxCell>
+        <mxCell id="gapres" parent="1" style="rounded=0;whiteSpace=wrap;html=0;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fillColor=#ffffff;strokeColor=#666666;fontSize=12;" value="tbl_gap_analysis_results&#xa;PK gap_analysis_result_id : int(10)&#xa;FK gap_analysis_id : int(10)&#xa;FK competency_id : int(10)&#xa;required_level : int(3)&#xa;current_level : int(3)&#xa;gap_level : int(3)&#xa;status : varchar(20)&#xa;remarks : text&#xa;created_at : datetime&#xa;updated_at : datetime" vertex="1">
+          <mxGeometry height="260" width="340" x="340" y="695" as="geometry" />
+        </mxCell>
+        <mxCell id="history" parent="1" style="rounded=0;whiteSpace=wrap;html=0;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fillColor=#ffffff;strokeColor=#666666;fontSize=12;" value="tbl_historical_records&#xa;PK record_id : int(10)&#xa;FK employee_id : int(10)&#xa;record_type : varchar(50)&#xa;description : text&#xa;effective_date : date&#xa;created_at : datetime&#xa;updated_at : datetime" vertex="1">
+          <mxGeometry height="210" width="340" x="770" y="770" as="geometry" />
+        </mxCell>
+        <mxCell id="behavior" parent="1" style="rounded=0;whiteSpace=wrap;html=0;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fillColor=#ffffff;strokeColor=#666666;fontSize=12;" value="tbl_behavioral_indicators&#xa;PK behavioral_indicator_id : int(10)&#xa;FK competency_id : int(10)&#xa;FK proficiency_level_id : int(10)&#xa;indicator_text : text&#xa;created_at : datetime&#xa;updated_at : datetime" vertex="1">
+          <mxGeometry height="240" width="300" x="1280" y="723" as="geometry" />
+        </mxCell>
+        <mxCell id="e_roles_users" edge="1" parent="1" source="roles" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;endArrow=ERone;endFill=0;startArrow=ERmany;startFill=0;fontSize=10;" target="users" value="1 : 0..*">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_emp_users" edge="1" parent="1" source="employees" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;endArrow=ERone;endFill=0;startArrow=ERmany;startFill=0;fontSize=10;" target="users" value="1 : 0..1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_cat_comp" edge="1" parent="1" source="categories" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;endArrow=ERone;endFill=0;startArrow=ERmany;startFill=0;fontSize=10;" target="competencies" value="1 : 0..*">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_lvl_beh" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;endArrow=ERone;endFill=0;startArrow=ERmany;startFill=0;fontSize=10;" target="behavior" value="1 : 0..*">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1780" y="795" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="notes" parent="1" style="rounded=1;whiteSpace=wrap;html=0;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;fontSize=12;" value="Notes&#xa;1. This ERD represents the current Phase 1 database structure.&#xa;2. tbl_gap_analyses stores an analysis run; tbl_gap_analysis_results stores competency-level results for that run.&#xa;3. tbl_behavioral_indicators links a competency to a proficiency level and stores the indicator text.&#xa;4. required_level, current_level and gap_level are integer level values in the current schema.&#xa;5. Historical records are retained separately for audit/history tracking.&#xa;6. Assessment, Training &amp; Development, IDP and Talent/Succession functionality are excluded from Phase 1." vertex="1">
+          <mxGeometry height="210" width="2140" x="-180" y="1040" as="geometry" />
+        </mxCell>
+        <mxCell id="sxnNyYqn7om9t6LrkCI5-3" parent="1" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;USER MANAGEMENT&lt;/h1&gt;" vertex="1">
+          <mxGeometry height="35" width="290" x="-400" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="offices" parent="1" style="rounded=0;whiteSpace=wrap;html=0;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fillColor=#ffffff;strokeColor=#666666;fontSize=12;" value="tbl_offices&#xa;PK office_id : int(10)&#xa;office_name : varchar(100)&#xa;office_code : varchar(50)&#xa;description : text&#xa;status : varchar(20)&#xa;created_at : datetime&#xa;updated_at : datetime" vertex="1">
+          <mxGeometry height="220" width="330" x="760" y="420" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

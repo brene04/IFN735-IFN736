@@ -2,15 +2,16 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
-// use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-// use Illuminate\Notifications\Notifiable;
 
 // ================<default setting>================
+// use Illuminate\Database\Eloquent\Factories\HasFactory;
+// use Illuminate\Notifications\Notifiable;
+// use Illuminate\Contracts\Auth\MustVerifyEmail;
+// use Database\Factories\UserFactory;
+
 // #[Fillable(['name', 'email', 'password'])]
 // #[Hidden(['password', 'remember_token'])]
 // class User extends Authenticatable
@@ -40,8 +41,6 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
     'email',
     'password_hash',
     'status'
-    // 'created_at',
-    // 'updated_at'
 ])]
 
 #[Hidden(['password_hash'])]
@@ -50,9 +49,18 @@ class User extends Authenticatable
 {
     protected $table = 'tbl_users';
     protected $primaryKey = 'user_id';
-    public $timestamps = false;
 
-    public function getAuthPasswordName()
+    public function role(): BelongsTo
+    {
+        return $this->belongsTo(Role::class, 'role_id', 'role_id');
+    }
+
+    public function employee(): BelongsTo
+    {
+        return $this->belongsTo(Employee::class, 'employee_id', 'employee_id');
+    }
+
+    public function getAuthPasswordName() : string
     {
         return 'password_hash';
     }
