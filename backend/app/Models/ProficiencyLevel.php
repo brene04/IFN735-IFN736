@@ -18,7 +18,8 @@ class ProficiencyLevel extends Model
 {
     protected $table = 'tbl_proficiency_levels';
     protected $primaryKey = 'proficiency_level_id';
-
+    public $timestamps = false;
+    
     public function competency(): BelongsTo
     {
         return $this->belongsTo(Competency::class, 'competency_id', 'competency_id');

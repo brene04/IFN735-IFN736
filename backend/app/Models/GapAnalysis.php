@@ -19,7 +19,8 @@ class GapAnalysis extends Model
 {
     protected $table = 'tbl_gap_analyses';
     protected $primaryKey = 'gap_analysis_id';
-
+    public $timestamps = false;
+    
     public function employee(): BelongsTo
     {
         return $this->belongsTo(Employee::class, 'employee_id', 'employee_id');

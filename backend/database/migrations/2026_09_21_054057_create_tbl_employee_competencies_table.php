@@ -18,11 +18,11 @@ return new class extends Migration
             $table->unsignedInteger('competency_id');
             $table->foreign('competency_id')->references('competency_id')->on('tbl_competencies');
             $table->unsignedInteger('current_level');
-            $table->text('evidence');
-            // $table->date('last_updated');
-            $table->string('status', 20);
-            $table->dateTime('created_at');
-            $table->dateTime('updated_at');
+            $table->text('evidence')->nullable();
+            $table->date('last_updated')->nullable();
+            $table->string('status', 20)->nullable()->default('Active');
+            $table->dateTime('created_at')->nullable()->useCurrent();
+            $table->dateTime('updated_at')->nullable()->useCurrent()->useCurrentOnUpdate();
         });
     }
 

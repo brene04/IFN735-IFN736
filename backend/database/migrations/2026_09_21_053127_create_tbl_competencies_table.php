@@ -13,15 +13,15 @@ return new class extends Migration
     {
         Schema::create('tbl_competencies', function (Blueprint $table) {
             $table->increments('competency_id'); //PK
-            $table->string('competency_code', 50);
-            $table->string('competency_name', 100);
-            $table->unsignedInteger('competency_category_id'); 
-            $table->foreign('competency_category_id')->references('competency_category_id')->on('tbl_competency_categories');
-            $table->text('description');
-            $table->string('competency_type', 50);
-            $table->string('status', 20);
-            $table->dateTime('created_at');
-            $table->dateTime('updated_at');
+            $table->unsignedInteger('category_id')->nullable(); 
+            $table->foreign('category_id')->references('category_id')->on('tbl_competency_categories');
+            $table->string('competency_code', 50)->nullable();
+            $table->string('competency_name', 255);
+            $table->text('description')->nullable();
+            $table->string('competency_type', 50)->nullable();
+            $table->string('status', 20)->nullable()->default('Active');
+            $table->dateTime('created_at')->nullable()->useCurrent();
+            $table->dateTime('updated_at')->nullable()->useCurrent()->useCurrentOnUpdate();
         });
     }
 

@@ -18,9 +18,9 @@ return new class extends Migration
             $table->unsignedInteger('competency_id');
             $table->foreign('competency_id')->references('competency_id')->on('tbl_competencies');
             $table->unsignedInteger('required_level');
-            $table->unsignedInteger('priority');
-            $table->dateTime('created_at');
-            $table->dateTime('updated_at');
+            $table->unsignedInteger('priority')->nullable();
+            $table->dateTime('created_at')->nullable()->useCurrent();
+            $table->dateTime('updated_at')->nullable()->useCurrent()->useCurrentOnUpdate();
         });
     }
 

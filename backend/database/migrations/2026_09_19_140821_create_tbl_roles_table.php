@@ -15,9 +15,10 @@ return new class extends Migration
             $table->increments('role_id'); //PK
             $table->string('role_name', 50);
             $table->text('description');
-            $table->string('status', 20);
-            $table->dateTime('created_at');
-            $table->dateTime('updated_at');
+            $table->text('description')->nullable();
+            $table->string('status', 20)->nullable()->default('Active');
+            $table->dateTime('created_at')->nullable()->useCurrent();
+            $table->dateTime('updated_at')->nullable()->useCurrent()->useCurrentOnUpdate();
         });
     }
 

@@ -19,7 +19,8 @@ class Competency extends Model
 {
     protected $table = 'tbl_competencies';
     protected $primaryKey = 'competency_id';
-
+    public $timestamps = false;
+    
     public function competencyCategory(): BelongsTo
     {
         return $this->belongsTo(CompetencyCategory::class, 'category_id', 'category_id');

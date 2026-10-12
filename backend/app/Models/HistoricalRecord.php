@@ -16,7 +16,8 @@ class HistoricalRecord extends Model
 {
     protected $table = 'tbl_historical_records';
     protected $primaryKey = 'record_id';
-
+    public $timestamps = false;
+    
     public function employee(): BelongsTo
     {
         return $this->belongsTo(Employee::class, 'employee_id', 'employee_id');

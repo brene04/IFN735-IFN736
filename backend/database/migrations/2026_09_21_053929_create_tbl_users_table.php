@@ -15,15 +15,15 @@ return new class extends Migration
             $table->increments('user_id'); //PK
             $table->unsignedInteger('role_id');
             $table->foreign('role_id')->references('role_id')->on('tbl_roles');
-            $table->unsignedInteger('employee_id');
+            $table->unsignedInteger('employee_id')->nullable();
             $table->foreign('employee_id')->references('employee_id')->on('tbl_employees');
             $table->string('username', 50);
-            $table->string('email', 100);
+            $table->string('email', 100)->nullable();
             $table->string('password_hash', 255);
-            $table->string('status', 20);
-            $table->dateTime('last_login');
-            $table->dateTime('created_at');
-            $table->dateTime('updated_at');
+            $table->string('status', 20)->nullable()->default('Active');
+            $table->dateTime('last_login')->nullable();
+            $table->dateTime('created_at')->nullable()->useCurrent();
+            $table->dateTime('updated_at')->nullable()->useCurrent()->useCurrentOnUpdate();
         });
     }
 

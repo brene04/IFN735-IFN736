@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 #[Fillable([
     'position_code',
     'position_title',
+    'salary_grade',
     'description',
     'department',
     'employment_type',
@@ -18,7 +19,8 @@ class Position extends Model
 {
     protected $table = 'tbl_positions';
     protected $primaryKey = 'position_id';
-
+    public $timestamps = false;
+    
     public function employees(): HasMany
     {
         return $this->hasMany(Employee::class, 'position_id', 'position_id');

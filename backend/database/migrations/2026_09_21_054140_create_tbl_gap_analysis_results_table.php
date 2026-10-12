@@ -20,10 +20,10 @@ return new class extends Migration
             $table->unsignedInteger('required_level');
             $table->unsignedInteger('current_level');
             $table->integer('gap_level');
-            $table->string('status', 20);
-            $table->text('remarks');
-            $table->dateTime('created_at');
-            $table->dateTime('updated_at');
+            $table->string('status', 20)->nullable()->default('Active');
+            $table->text('remarks')->nullable();
+            $table->dateTime('created_at')->nullable()->useCurrent();
+            $table->dateTime('updated_at')->nullable()->useCurrent()->useCurrentOnUpdate();
         });
     }
 

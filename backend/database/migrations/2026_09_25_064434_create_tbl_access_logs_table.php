@@ -17,7 +17,7 @@ return new class extends Migration
         $table->foreign('user_id')->references('user_id')->on('tbl_users');
         $table->string('action');
         // $table->string('ip_address')->nullable();
-        $table->dateTime('created_at');
+            $table->dateTime('created_at')->nullable()->useCurrent();
         });
     }
 

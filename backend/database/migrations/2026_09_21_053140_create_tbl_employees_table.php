@@ -19,14 +19,14 @@ return new class extends Migration
             $table->foreign('position_id')->references('position_id')->on('tbl_positions');
             $table->string('employee_no', 50);
             $table->string('first_name', 50);
-            $table->string('middle_name', 50);
+            $table->string('middle_name', 50)->nullable();
             $table->string('last_name', 50);
-            $table->string('email', 100);
-            $table->string('phone', 20);
-            $table->date('date_hired');
-            $table->string('status', 20);
-            $table->dateTime('created_at');
-            $table->dateTime('updated_at');
+            $table->string('email', 100)->nullable();
+            $table->string('phone', 20)->nullable();
+            $table->date('date_hired')->nullable();
+            $table->string('status', 20)->nullable()->default('Active');
+            $table->dateTime('created_at')->nullable()->useCurrent();
+            $table->dateTime('updated_at')->nullable()->useCurrent()->useCurrentOnUpdate();
         });
     }
 

@@ -18,12 +18,12 @@ return new class extends Migration
             $table->unsignedInteger('position_id');
             $table->foreign('position_id')->references('position_id')->on('tbl_positions');
             $table->date('analysis_date');
-            $table->string('status', 20);
-            $table->text('remarks');
-            $table->unsignedInteger('created_by');
+            $table->string('status', 20)->nullable()->default('Active');
+            $table->text('remarks')->nullable();
+            $table->unsignedInteger('created_by')->nullable();
             $table->foreign('created_by')->references('user_id')->on('tbl_users');
-            $table->dateTime('created_at');
-            $table->dateTime('updated_at');
+            $table->dateTime('created_at')->nullable()->useCurrent();
+            $table->dateTime('updated_at')->nullable()->useCurrent()->useCurrentOnUpdate();
         });
     }
 

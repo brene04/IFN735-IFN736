@@ -49,7 +49,8 @@ class User extends Authenticatable
 {
     protected $table = 'tbl_users';
     protected $primaryKey = 'user_id';
-
+    public $timestamps = false;
+    
     public function role(): BelongsTo
     {
         return $this->belongsTo(Role::class, 'role_id', 'role_id');

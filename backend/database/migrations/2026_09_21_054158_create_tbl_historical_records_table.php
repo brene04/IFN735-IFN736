@@ -16,10 +16,10 @@ return new class extends Migration
             $table->unsignedInteger('employee_id');
             $table->foreign('employee_id')->references('employee_id')->on('tbl_employees');
             $table->string('record_type', 50);
-            $table->text('description');
-            $table->dateTime('effective_date');
-            $table->dateTime('created_at');
-            $table->dateTime('updated_at');
+            $table->text('description')->nullable();
+            $table->date('effective_date')->nullable();
+            $table->dateTime('created_at')->nullable()->useCurrent();
+            $table->dateTime('updated_at')->nullable()->useCurrent()->useCurrentOnUpdate();
         });
     }
 

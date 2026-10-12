@@ -18,7 +18,8 @@ class EmployeeCompetency extends Model
 {
     protected $table = 'tbl_employee_competencies';
     protected $primaryKey = 'employee_competency_id';
-
+    public $timestamps = false;
+    
     public function employee(): BelongsTo
     {
         return $this->belongsTo(Employee::class, 'employee_id', 'employee_id');

@@ -9,13 +9,14 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 #[Fillable([
     'proficiency_level_id',
     'indicator_code',
-    'description',
+    'indicator_text',
 ])]
 class BehavioralIndicator extends Model
 {
     protected $table = 'tbl_behavioral_indicators';
     protected $primaryKey = 'behavioral_indicator_id';
-
+    public $timestamps = false;
+    
     public function proficiencyLevel(): BelongsTo
     {
         return $this->belongsTo(ProficiencyLevel::class, 'proficiency_level_id', 'proficiency_level_id');

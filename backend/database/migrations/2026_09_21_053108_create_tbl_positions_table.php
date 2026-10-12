@@ -13,14 +13,15 @@ return new class extends Migration
     {
         Schema::create('tbl_positions', function (Blueprint $table) {
             $table->increments('position_id'); //PK
-            $table->string('position_code', 50);
+            $table->string('position_code', 50)->nullable();
             $table->string('position_title', 100);
-            $table->text('description');
-            $table->string('department', 100);
-            $table->string('employment_type', 50);
-            $table->string('status', 20);
-            $table->dateTime('created_at');
-            $table->dateTime('updated_at');
+            $table->text('description')->nullable();
+            $table->string('department', 100)->nullable();
+            $table->string('employment_type', 50)->nullable();
+            $table->string('salary_grade', 20)->nullable();
+            $table->string('status', 20)->nullable()->default('Active');
+            $table->dateTime('created_at')->nullable()->useCurrent();
+            $table->dateTime('updated_at')->nullable()->useCurrent()->useCurrentOnUpdate();
         });
     }
 

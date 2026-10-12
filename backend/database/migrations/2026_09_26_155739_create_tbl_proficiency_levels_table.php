@@ -16,10 +16,11 @@ return new class extends Migration
             $table->unsignedInteger('competency_id');
             $table->foreign('competency_id')->references('competency_id')->on('tbl_competencies');
             $table->unsignedInteger('level_number');
+            $table->unsignedInteger('level_name', 50);
             $table->text('description');
             $table->string('status', 20);
-            $table->dateTime('created_at');
-            $table->dateTime('updated_at');
+            $table->dateTime('created_at')->nullable()->useCurrent();
+            $table->dateTime('updated_at')->nullable()->useCurrent()->useCurrentOnUpdate();
         });
     }
 

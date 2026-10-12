@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('tbl_offices', function (Blueprint $table) {
             $table->increments('office_id'); //PK
-            $table->string('office_code', 50);
+            $table->string('office_code', 50)->nullable();
             $table->string('office_name', 100);
-            $table->text('description');
-            $table->string('status', 20);
-            $table->dateTime('created_at');
-            $table->dateTime('updated_at');
+            $table->text('description')->nullable();
+            $table->string('status', 20)->nullable()->default('Active');
+            $table->dateTime('created_at')->nullable()->useCurrent();
+            $table->dateTime('updated_at')->nullable()->useCurrent()->useCurrentOnUpdate();
         });
     }
 

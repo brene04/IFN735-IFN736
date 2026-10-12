@@ -12,14 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tbl_behavioral_indicators', function (Blueprint $table) {
-            $table->increments('behavioral_indicators_id'); //PK
+            $table->increments('behavioral_indicator_id'); //PK
             $table->unsignedInteger('proficiency_level_id');
             $table->foreign('proficiency_level_id')->references('proficiency_level_id')->on('tbl_proficiency_levels');
             $table->string('indicator_code', 10);
-            $table->text('description');
-            $table->string('status', 20);
-            $table->dateTime('created_at');
-            $table->dateTime('updated_at');
+            $table->text('indicator_text');
+            $table->dateTime('created_at')->nullable()->useCurrent();
+            $table->dateTime('updated_at')->nullable()->useCurrent()->useCurrentOnUpdate();
         });
     }
 

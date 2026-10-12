@@ -16,7 +16,8 @@ class CompetencyCategory extends Model
 {
     protected $table = 'tbl_competency_categories';
     protected $primaryKey = 'category_id';
-
+    public $timestamps = false;
+    
     public function competencies(): HasMany
     {
         return $this->hasMany(Competency::class, 'category_id', 'category_id');

@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('file_format', 10);
             $table->unsignedInteger('exported_by');
             $table->foreign('exported_by')->references('user_id')->on('tbl_users');
-            $table->dateTime('created_at');
-            $table->dateTime('updated_at');
+            $table->dateTime('created_at')->nullable()->useCurrent();
+            $table->dateTime('updated_at')->nullable()->useCurrent()->useCurrentOnUpdate();
         });
     }
 
