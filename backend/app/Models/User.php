@@ -42,7 +42,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
     'password_hash',
     'status'
 ])]
+
 #[Hidden(['password_hash'])]
+
 class User extends Authenticatable
 {
     protected $table = 'tbl_users';
