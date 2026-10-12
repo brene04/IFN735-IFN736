@@ -23,7 +23,6 @@ class Employee extends Model
 {
     protected $table = 'tbl_employees';
     protected $primaryKey = 'employee_id';
-    public $timestamps = false;
 
     public function position(): BelongsTo
     {
@@ -33,6 +32,11 @@ class Employee extends Model
     public function office(): BelongsTo
     {
         return $this->belongsTo(Office::class, 'office_id', 'office_id');
+    }
+
+    public function user(): HasMany
+    {
+        return $this->hasMany(User::class, 'employee_id', 'employee_id');
     }
 
     public function employeeCompetencies(): HasMany

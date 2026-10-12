@@ -19,7 +19,6 @@ class GapAnalysisResult extends Model
 {
     protected $table = 'tbl_gap_analysis_results';
     protected $primaryKey = 'gap_analysis_result_id';
-    public $timestamps = false;
 
     public function gapAnalysis(): BelongsTo
     {

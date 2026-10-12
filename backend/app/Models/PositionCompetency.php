@@ -16,7 +16,6 @@ class PositionCompetency extends Model
 {
     protected $table = 'tbl_position_competencies';
     protected $primaryKey = 'position_competency_id';
-    public $timestamps = false;
 
     public function position(): BelongsTo
     {

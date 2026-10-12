@@ -18,7 +18,6 @@ class Position extends Model
 {
     protected $table = 'tbl_positions';
     protected $primaryKey = 'position_id';
-    public $timestamps = false;
 
     public function employees(): HasMany
     {

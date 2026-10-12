@@ -16,7 +16,6 @@ class Office extends Model
 {
     protected $table = 'tbl_offices';
     protected $primaryKey = 'office_id';
-    public $timestamps = false;
 
     public function employees(): HasMany
     {

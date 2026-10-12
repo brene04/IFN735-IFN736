@@ -16,9 +16,6 @@ class Role extends Model
     protected $table = 'tbl_roles';
     protected $primaryKey = 'role_id';
 
-    public $incrementing = false;
-    public $timestamps = false;
-
     public function users(): HasMany
     {
         return $this->hasMany(User::class, 'role_id', 'role_id');
