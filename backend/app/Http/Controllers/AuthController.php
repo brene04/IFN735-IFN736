@@ -30,10 +30,9 @@ class AuthController extends Controller
 
         // Attempt login
         if (!Auth::attempt($credentials)) {
-            return response()->json(
-                ['message' => 'Invalid credentials.'], 
-                401
-            );
+            return response()->json([
+                'message' => 'Invalid credentials.'
+            ], 401);
         }
 
         // Regenerate session ID (to prevent session fixation attacks)
@@ -49,7 +48,7 @@ class AuthController extends Controller
         return response()->json([
             'message' => 'Login successful.',
             'user' => $user
-        ]);
+        ], 200);
     }
 
     /**
@@ -68,7 +67,7 @@ class AuthController extends Controller
 
         return response()->json([
             'message' => 'Logout successful.'
-        ]);
+        ], 200);
     }
 
 }
