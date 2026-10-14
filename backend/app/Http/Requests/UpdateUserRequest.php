@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\Rules\Password;
 
 class UpdateUserRequest extends FormRequest
 {
@@ -38,18 +39,21 @@ class UpdateUserRequest extends FormRequest
                 'required', 
                 'string', 
                 'max:50',
+                Rule::unique('tbl_users', 'username')
+                    ->ignore($this->route('user_id'), 'user_id'),
             ],
             'email' => [
                 'required', 
-                'string', 
+                'email', 
                 'max:100',
                 Rule::unique('tbl_users', 'email')
-                    ->ignore($this->route('email'), 'email'),
+                    ->ignore($this->route('user_id'), 'user_id'),
             ],
             'password_hash' => [
-                'required', 
+                'sometimes',
+                'nullable',
                 'string', 
-                // 'max:8'
+                Password::min(8),
             ],
             'status' => [
                 'required', 

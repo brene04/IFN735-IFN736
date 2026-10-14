@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\Password;
 
 class CreateUserRequest extends FormRequest
 {
@@ -37,17 +38,18 @@ class CreateUserRequest extends FormRequest
                 'required', 
                 'string', 
                 'max:50',
+                'unique:tbl_users,username',
             ],
             'email' => [
                 'required', 
-                'string', 
+                'email', 
                 'max:100',
                 'unique:tbl_users,email',
             ],
             'password_hash' => [
                 'required', 
                 'string', 
-                // 'max:8'
+                Password::min(8),
             ],
             'status' => [
                 'required', 
