@@ -194,7 +194,7 @@ Route::middleware('auth:sanctum')->group(function () {
         });
 
         // Position Competencies by unit
-        Route::get('units/{unit_id}/positions/competencies', 'getCompetenciesByUnit');
+        Route::get('departments/{department}/positions/competencies', 'getCompetenciesByUnit');
 
     });
 
@@ -255,7 +255,8 @@ Route::middleware('auth:sanctum')->group(function () {
         
             // GapAnalysisResult by employee / units
             Route::get('employees/{employee_id}/gap-analyses-results', 'getGapResultsByEmployee');
-            Route::get('units/{unit_id}/gap-analyses-results', 'getGapResultsByUnit');
+            // Route::get('units/{unit_id}/gap-analyses-results', 'getGapResultsByUnit');
+            Route::get('departments/{department_id}/gap-analyses-results', 'getGapResultsByUnit');            
         });
 
     });
