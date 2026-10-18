@@ -20,25 +20,7 @@ class EmployeeController extends Controller
      */
     public function getEmployees()
     {
-        $employees = Employee::select([
-            'employee_id',
-            'position_id',
-            'office_id',
-            'employee_no',
-            'first_name',
-            'middle_name',
-            'last_name',
-            'email',
-            'status',
-        ])
-        ->with([
-            'office:office_id,office_name,office_code',
-            'position:position_id,position_title,employment_type',
-            'gapAnalyses:employee_id,position_id,status',
-        ])
-        ->get();
-
-        return response()->json($employees,200);
+        //
     }
 
     /**
@@ -47,12 +29,7 @@ class EmployeeController extends Controller
     public function createEmployee(CreateEmployeeRequest $request)
     {
         $validated = $request->validated();
-        $employee = Employee::create($validated);
-
-        return response()->json([
-            'message' => 'Employee created successfully.',
-            'data' => $employee
-        ], 201);
+        //
     }
 
     /**
@@ -60,13 +37,7 @@ class EmployeeController extends Controller
      */
     public function getSingleEmployee(int $employee_id)
     {
-        $employee = Employee::with([
-            'office:office_id,office_name,office_code',
-            'position:position_id,position_title,employment_type',
-            'gapAnalyses:employee_id,position_id,status',
-        ])->findOrFail($employee_id);
-
-        return response()->json($employee, 200);
+        //
     }
 
     /**
@@ -75,13 +46,7 @@ class EmployeeController extends Controller
     public function updateEmployee(UpdateEmployeeRequest $request, int $employee_id)
     {
         $validated = $request->validated();
-        $employee = Employee::findOrFail($employee_id);
-        $employee->update($validated);
-
-        return response()->json([
-            'message' => 'Employee updated successfully.',
-            'data' => $employee
-        ], 200);
+        //
     }
 
     /**
@@ -89,10 +54,6 @@ class EmployeeController extends Controller
      */
     public function deleteEmployee(int $employee_id)
     {
-        $employee = Employee::findOrFail($employee_id);
-        $employee->delete();
-        return response()->json([
-            'message' => 'Employee deleted successfully.'
-        ], 200);
+        //
     }
 }
