@@ -59,9 +59,9 @@ export default function Login() {
         <div>
           <div style={{ width: '48px', height: '3px', background: ACCENT, marginBottom: '20px' }} />
           <h1 style={{ fontSize: '30px', fontWeight: 700, lineHeight: 1.25, margin: '0 0 16px', color: 'white' }}>
-            Strategic Performance
+            Competency Based
             <br />
-            Management System
+            Human Resource (CBHR) System
           </h1>
           <p style={{ fontSize: '14px', fontStyle: 'italic', color: '#b9c4d4', lineHeight: 1.6, margin: 0 }}>
             Commitments, monitoring, coaching and year-end rating for all DOST offices, councils
